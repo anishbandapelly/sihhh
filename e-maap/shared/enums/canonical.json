@@ -1,0 +1,99 @@
+{
+  "Role": [
+    "INSPECTOR",
+    "GOVERNMENT_OFFICER"
+  ],
+  "CaseType": [
+    "CITIZEN_LEAD",
+    "INSPECTION",
+    "SYSTEMIC"
+  ],
+  "CaseStatus": [
+    "INTAKE",
+    "UNDER_REVIEW",
+    "ASSIGNED",
+    "CAPTURING",
+    "SYNCING",
+    "ANALYSING",
+    "AWAITING_VERIFICATION",
+    "COMPLETED",
+    "CLOSED"
+  ],
+  "AssignmentStatus": [
+    "ASSIGNED",
+    "DOWNLOADED",
+    "IN_PROGRESS",
+    "SUBMITTED",
+    "COMPLETED"
+  ],
+  "SyncStatus": [
+    "LOCAL_ONLY",
+    "UPLOADING",
+    "SYNCHRONISED",
+    "FAILED"
+  ],
+  "AnalysisStatus": [
+    "QUEUED",
+    "RUNNING",
+    "SUCCEEDED",
+    "FAILED"
+  ],
+  "EvidenceState": [
+    "SUPPORTED",
+    "CONFLICTING",
+    "UNRESOLVED",
+    "OBSCURED_DAMAGED",
+    "POTENTIALLY_ABSENT",
+    "NOT_APPLICABLE"
+  ],
+  "FindingStatus": [
+    "POTENTIAL",
+    "ACCEPTED",
+    "CORRECTED",
+    "REJECTED"
+  ],
+  "PatternStatus": [
+    "CANDIDATE",
+    "APPROVED",
+    "REJECTED"
+  ],
+  "ReportStatus": [
+    "QUEUED",
+    "GENERATING",
+    "READY",
+    "FAILED"
+  ],
+  "EvidenceSource": [
+    "FIELD_CAPTURE",
+    "CITIZEN_UPLOAD",
+    "GOVERNMENT_UPLOAD",
+    "LISTING_UPLOAD"
+  ],
+  "CoverageState": [
+    "PLANNED",
+    "PARTIAL",
+    "ADEQUATE",
+    "MANUAL_CONFIRMED"
+  ],
+  "PackageFamily": [
+    "RIGID_CUBOID",
+    "CURVED_RIGID",
+    "FLEXIBLE",
+    "OTHER_PACKAGE"
+  ],
+  "Action": [
+    "ACCEPT",
+    "CORRECT",
+    "REJECT"
+  ],
+  "FollowupStatus": [
+    "ASSIGNED",
+    "IN_PROGRESS",
+    "COMPLETED"
+  ],
+  "BriefStatus": [
+    "DRAFT",
+    "APPROVED",
+    "REJECTED"
+  ]
+}

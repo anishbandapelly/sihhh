@@ -1,0 +1,1348 @@
+{
+  "1533f7e8bf2c4031197f882d8ff56506bb55a1be69dd0d2f28ea5f1915a10cf1": {
+    "file": "clean.png",
+    "scenario": "clean",
+    "candidates": [
+      {
+        "declaration_group": "D01",
+        "raw_text": "Commodity: Household cleaning powder",
+        "value": {
+          "common_generic_name": "Household cleaning powder"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.171,
+          0.43083333333333335,
+          0.194
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D02",
+        "raw_text": "Manufactured by: Demo Care Products Pvt Ltd\nAddress: 24 Industrial Road, Bengaluru 560001",
+        "value": {
+          "responsible_entity_name": "Demo Care Products Pvt Ltd",
+          "responsible_entity_address": "24 Industrial Road, Bengaluru 560001",
+          "role_label": "MANUFACTURER_PACKER"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.281,
+          0.4816666666666667,
+          0.337
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D03",
+        "raw_text": "Net quantity: 500 g",
+        "value": {
+          "quantity_value": 500.0,
+          "quantity_unit": "g",
+          "quantity_kind": "MEASURE"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.393,
+          0.22583333333333333,
+          0.414
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D04",
+        "raw_text": "MRP: INR 125.00 (inclusive of all taxes)",
+        "value": {
+          "mrp_amount": 125.0,
+          "currency": "INR",
+          "mrp_label": "MRP"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.5,
+          0.3983333333333333,
+          0.521
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D05",
+        "raw_text": "Manufacture date: 08/2026",
+        "value": {
+          "manufacture_month": 8,
+          "manufacture_year": 2026
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.611,
+          0.3016666666666667,
+          0.63
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D06",
+        "raw_text": "Consumer care: Demo Care Office\nCare address: 24 Industrial Road, Bengaluru 560001\nPhone: 18001234567; Email: care@example.test",
+        "value": {
+          "care_name_or_office": "Demo Care Office",
+          "care_address": "24 Industrial Road, Bengaluru 560001",
+          "care_phone": "18001234567",
+          "care_email": "care@example.test"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.721,
+          0.5275,
+          0.81
+        ],
+        "confidence": 0.98
+      }
+    ],
+    "presentation": {}
+  },
+  "0f3bb5b40cce96ac9f3bb2f56642391cbe9c0861757174ce772b03993a4a4ddd": {
+    "file": "missing-care-phone.png",
+    "scenario": "missing-care-phone",
+    "candidates": [
+      {
+        "declaration_group": "D01",
+        "raw_text": "Commodity: Household cleaning powder",
+        "value": {
+          "common_generic_name": "Household cleaning powder"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.171,
+          0.43083333333333335,
+          0.194
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D02",
+        "raw_text": "Manufactured by: Demo Care Products Pvt Ltd\nAddress: 24 Industrial Road, Bengaluru 560001",
+        "value": {
+          "responsible_entity_name": "Demo Care Products Pvt Ltd",
+          "responsible_entity_address": "24 Industrial Road, Bengaluru 560001",
+          "role_label": "MANUFACTURER_PACKER"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.281,
+          0.4816666666666667,
+          0.337
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D03",
+        "raw_text": "Net quantity: 500 g",
+        "value": {
+          "quantity_value": 500.0,
+          "quantity_unit": "g",
+          "quantity_kind": "MEASURE"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.393,
+          0.22583333333333333,
+          0.414
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D04",
+        "raw_text": "MRP: INR 125.00 (inclusive of all taxes)",
+        "value": {
+          "mrp_amount": 125.0,
+          "currency": "INR",
+          "mrp_label": "MRP"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.5,
+          0.3983333333333333,
+          0.521
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D05",
+        "raw_text": "Manufacture date: 08/2026",
+        "value": {
+          "manufacture_month": 8,
+          "manufacture_year": 2026
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.611,
+          0.3016666666666667,
+          0.63
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D06",
+        "raw_text": "Consumer care: Demo Care Office\nCare address: 24 Industrial Road, Bengaluru 560001\nEmail: care@example.test",
+        "value": {
+          "care_name_or_office": "Demo Care Office",
+          "care_address": "24 Industrial Road, Bengaluru 560001",
+          "care_email": "care@example.test"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.721,
+          0.5275,
+          0.81
+        ],
+        "confidence": 0.98
+      }
+    ],
+    "presentation": {}
+  },
+  "bacdd8cde7ca3e07d7d4b4df7b4e4c068b58b2fc5f4be64a8c67753b7374a3cf": {
+    "file": "conflict-600g.png",
+    "scenario": "conflict-600g",
+    "candidates": [
+      {
+        "declaration_group": "D01",
+        "raw_text": "Commodity: Household cleaning powder",
+        "value": {
+          "common_generic_name": "Household cleaning powder"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.171,
+          0.43083333333333335,
+          0.194
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D02",
+        "raw_text": "Manufactured by: Demo Care Products Pvt Ltd\nAddress: 24 Industrial Road, Bengaluru 560001",
+        "value": {
+          "responsible_entity_name": "Demo Care Products Pvt Ltd",
+          "responsible_entity_address": "24 Industrial Road, Bengaluru 560001",
+          "role_label": "MANUFACTURER_PACKER"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.281,
+          0.4816666666666667,
+          0.337
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D03",
+        "raw_text": "Net quantity: 600 g",
+        "value": {
+          "quantity_value": 600.0,
+          "quantity_unit": "g",
+          "quantity_kind": "MEASURE"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.393,
+          0.22583333333333333,
+          0.414
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D04",
+        "raw_text": "MRP: INR 125.00 (inclusive of all taxes)",
+        "value": {
+          "mrp_amount": 125.0,
+          "currency": "INR",
+          "mrp_label": "MRP"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.5,
+          0.3983333333333333,
+          0.521
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D05",
+        "raw_text": "Manufacture date: 08/2026",
+        "value": {
+          "manufacture_month": 8,
+          "manufacture_year": 2026
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.611,
+          0.3016666666666667,
+          0.63
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D06",
+        "raw_text": "Consumer care: Demo Care Office\nCare address: 24 Industrial Road, Bengaluru 560001\nPhone: 18001234567; Email: care@example.test",
+        "value": {
+          "care_name_or_office": "Demo Care Office",
+          "care_address": "24 Industrial Road, Bengaluru 560001",
+          "care_phone": "18001234567",
+          "care_email": "care@example.test"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.721,
+          0.5275,
+          0.81
+        ],
+        "confidence": 0.98
+      }
+    ],
+    "presentation": {}
+  },
+  "34c605f69df35db5fdfa4088d4788b2bca95e23bed2239c3982d023d34d4fa71": {
+    "file": "blurred.png",
+    "scenario": "blurred",
+    "candidates": [
+      {
+        "declaration_group": "D01",
+        "raw_text": "Commodity: Household cleaning powder",
+        "value": {
+          "common_generic_name": "Household cleaning powder"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.171,
+          0.43083333333333335,
+          0.194
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D02",
+        "raw_text": "Manufactured by: Demo Care Products Pvt Ltd\nAddress: 24 Industrial Road, Bengaluru 560001",
+        "value": {
+          "responsible_entity_name": "Demo Care Products Pvt Ltd",
+          "responsible_entity_address": "24 Industrial Road, Bengaluru 560001",
+          "role_label": "MANUFACTURER_PACKER"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.281,
+          0.4816666666666667,
+          0.337
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D03",
+        "raw_text": "Net quantity: 500 g",
+        "value": {
+          "quantity_value": 500.0,
+          "quantity_unit": "g",
+          "quantity_kind": "MEASURE"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.393,
+          0.22583333333333333,
+          0.414
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D04",
+        "raw_text": "MRP: INR 125.00 (inclusive of all taxes)",
+        "value": {
+          "mrp_amount": 125.0,
+          "currency": "INR",
+          "mrp_label": "MRP"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.5,
+          0.3983333333333333,
+          0.521
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D05",
+        "raw_text": "Manufacture date: 08/2026",
+        "value": {
+          "manufacture_month": 8,
+          "manufacture_year": 2026
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.611,
+          0.3016666666666667,
+          0.63
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D06",
+        "raw_text": "Consumer care: Demo Care Office\nCare address: 24 Industrial Road, Bengaluru 560001\nPhone: 18001234567; Email: care@example.test",
+        "value": {
+          "care_name_or_office": "Demo Care Office",
+          "care_address": "24 Industrial Road, Bengaluru 560001",
+          "care_phone": "18001234567",
+          "care_email": "care@example.test"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.721,
+          0.5275,
+          0.81
+        ],
+        "confidence": 0.98
+      }
+    ],
+    "presentation": {}
+  },
+  "30df1258cc61c6c7bd85cfd4b8a5aa5c75041bbc4fc9a60f14acb2f98484fdf8": {
+    "file": "glare.png",
+    "scenario": "glare",
+    "candidates": [
+      {
+        "declaration_group": "D01",
+        "raw_text": "Commodity: Household cleaning powder",
+        "value": {
+          "common_generic_name": "Household cleaning powder"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.171,
+          0.43083333333333335,
+          0.194
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D02",
+        "raw_text": "Manufactured by: Demo Care Products Pvt Ltd\nAddress: 24 Industrial Road, Bengaluru 560001",
+        "value": {
+          "responsible_entity_name": "Demo Care Products Pvt Ltd",
+          "responsible_entity_address": "24 Industrial Road, Bengaluru 560001",
+          "role_label": "MANUFACTURER_PACKER"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.281,
+          0.4816666666666667,
+          0.337
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D03",
+        "raw_text": "Net quantity: 500 g",
+        "value": {
+          "quantity_value": 500.0,
+          "quantity_unit": "g",
+          "quantity_kind": "MEASURE"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.393,
+          0.22583333333333333,
+          0.414
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D04",
+        "raw_text": "MRP: INR 125.00 (inclusive of all taxes)",
+        "value": {
+          "mrp_amount": 125.0,
+          "currency": "INR",
+          "mrp_label": "MRP"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.5,
+          0.3983333333333333,
+          0.521
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D05",
+        "raw_text": "Manufacture date: 08/2026",
+        "value": {
+          "manufacture_month": 8,
+          "manufacture_year": 2026
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.611,
+          0.3016666666666667,
+          0.63
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D06",
+        "raw_text": "Consumer care: Demo Care Office\nCare address: 24 Industrial Road, Bengaluru 560001\nPhone: 18001234567; Email: care@example.test",
+        "value": {
+          "care_name_or_office": "Demo Care Office",
+          "care_address": "24 Industrial Road, Bengaluru 560001",
+          "care_phone": "18001234567",
+          "care_email": "care@example.test"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.721,
+          0.5275,
+          0.81
+        ],
+        "confidence": 0.98
+      }
+    ],
+    "presentation": {}
+  },
+  "4fb32e1cf09c9255770e8ed8c904c94c8533c2f11a24d4487a1fb7489d615e12": {
+    "file": "incomplete.png",
+    "scenario": "incomplete",
+    "candidates": [
+      {
+        "declaration_group": "D01",
+        "raw_text": "Commodity: Household cleaning powder",
+        "value": {
+          "common_generic_name": "Household cleaning powder"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.171,
+          0.43083333333333335,
+          0.194
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D02",
+        "raw_text": "Manufactured by: Demo Care Products Pvt Ltd\nAddress: 24 Industrial Road, Bengaluru 560001",
+        "value": {
+          "responsible_entity_name": "Demo Care Products Pvt Ltd",
+          "responsible_entity_address": "24 Industrial Road, Bengaluru 560001",
+          "role_label": "MANUFACTURER_PACKER"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.281,
+          0.4816666666666667,
+          0.337
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D03",
+        "raw_text": "Net quantity: 500 g",
+        "value": {
+          "quantity_value": 500.0,
+          "quantity_unit": "g",
+          "quantity_kind": "MEASURE"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.393,
+          0.22583333333333333,
+          0.414
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D04",
+        "raw_text": "MRP: INR 125.00 (inclusive of all taxes)",
+        "value": {
+          "mrp_amount": 125.0,
+          "currency": "INR",
+          "mrp_label": "MRP"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.5,
+          0.3983333333333333,
+          0.521
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D05",
+        "raw_text": "Manufacture date: 08/2026",
+        "value": {
+          "manufacture_month": 8,
+          "manufacture_year": 2026
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.611,
+          0.3016666666666667,
+          0.63
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D06",
+        "raw_text": "Consumer care: Demo Care Office\nCare address: 24 Industrial Road, Bengaluru 560001\nPhone: 18001234567; Email: care@example.test",
+        "value": {
+          "care_name_or_office": "Demo Care Office",
+          "care_address": "24 Industrial Road, Bengaluru 560001",
+          "care_phone": "18001234567",
+          "care_email": "care@example.test"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.721,
+          0.5275,
+          0.81
+        ],
+        "confidence": 0.98
+      }
+    ],
+    "presentation": {}
+  },
+  "7d15d5a0159ae89e7cb916bc5f57789c56f0421903b5973c0d7773994d6a0e62": {
+    "file": "font-unmeasurable.png",
+    "scenario": "font-unmeasurable",
+    "candidates": [
+      {
+        "declaration_group": "D01",
+        "raw_text": "Commodity: Household cleaning powder",
+        "value": {
+          "common_generic_name": "Household cleaning powder"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.171,
+          0.43083333333333335,
+          0.194
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D02",
+        "raw_text": "Manufactured by: Demo Care Products Pvt Ltd\nAddress: 24 Industrial Road, Bengaluru 560001",
+        "value": {
+          "responsible_entity_name": "Demo Care Products Pvt Ltd",
+          "responsible_entity_address": "24 Industrial Road, Bengaluru 560001",
+          "role_label": "MANUFACTURER_PACKER"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.281,
+          0.4816666666666667,
+          0.337
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D03",
+        "raw_text": "Net quantity: 500 g",
+        "value": {
+          "quantity_value": 500.0,
+          "quantity_unit": "g",
+          "quantity_kind": "MEASURE"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.393,
+          0.22583333333333333,
+          0.414
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D04",
+        "raw_text": "MRP: INR 125.00 (inclusive of all taxes)",
+        "value": {
+          "mrp_amount": 125.0,
+          "currency": "INR",
+          "mrp_label": "MRP"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.5,
+          0.3983333333333333,
+          0.521
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D05",
+        "raw_text": "Manufacture date: 08/2026",
+        "value": {
+          "manufacture_month": 8,
+          "manufacture_year": 2026
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.611,
+          0.3016666666666667,
+          0.63
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D06",
+        "raw_text": "Consumer care: Demo Care Office\nCare address: 24 Industrial Road, Bengaluru 560001\nPhone: 18001234567; Email: care@example.test",
+        "value": {
+          "care_name_or_office": "Demo Care Office",
+          "care_address": "24 Industrial Road, Bengaluru 560001",
+          "care_phone": "18001234567",
+          "care_email": "care@example.test"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.721,
+          0.5275,
+          0.81
+        ],
+        "confidence": 0.98
+      }
+    ],
+    "presentation": {}
+  },
+  "2441453726c7d082bbf521f55ea5edf108d512e08abc812282116a088ade293e": {
+    "file": "font-small-calibrated.png",
+    "scenario": "font-small-calibrated",
+    "candidates": [
+      {
+        "declaration_group": "D01",
+        "raw_text": "Commodity: Household cleaning powder",
+        "value": {
+          "common_generic_name": "Household cleaning powder"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.171,
+          0.43083333333333335,
+          0.194
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D02",
+        "raw_text": "Manufactured by: Demo Care Products Pvt Ltd\nAddress: 24 Industrial Road, Bengaluru 560001",
+        "value": {
+          "responsible_entity_name": "Demo Care Products Pvt Ltd",
+          "responsible_entity_address": "24 Industrial Road, Bengaluru 560001",
+          "role_label": "MANUFACTURER_PACKER"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.281,
+          0.4816666666666667,
+          0.337
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D03",
+        "raw_text": "Net quantity: 500 g",
+        "value": {
+          "quantity_value": 500.0,
+          "quantity_unit": "g",
+          "quantity_kind": "MEASURE"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.393,
+          0.22583333333333333,
+          0.414
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D04",
+        "raw_text": "MRP: INR 125.00 (inclusive of all taxes)",
+        "value": {
+          "mrp_amount": 125.0,
+          "currency": "INR",
+          "mrp_label": "MRP"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.497,
+          0.23,
+          0.508
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D05",
+        "raw_text": "Manufacture date: 08/2026",
+        "value": {
+          "manufacture_month": 8,
+          "manufacture_year": 2026
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.611,
+          0.3016666666666667,
+          0.63
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D06",
+        "raw_text": "Consumer care: Demo Care Office\nCare address: 24 Industrial Road, Bengaluru 560001\nPhone: 18001234567; Email: care@example.test",
+        "value": {
+          "care_name_or_office": "Demo Care Office",
+          "care_address": "24 Industrial Road, Bengaluru 560001",
+          "care_phone": "18001234567",
+          "care_email": "care@example.test"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.721,
+          0.5275,
+          0.81
+        ],
+        "confidence": 0.98
+      }
+    ],
+    "presentation": {
+      "D04": {
+        "id": "ENGINEERING-FIXTURE-ZONE-1",
+        "placement_zone": [
+          0.02,
+          0.1,
+          0.8,
+          0.9
+        ],
+        "minimum_text_height_mm": 2.0,
+        "fixture_ocr_stability": 1.0,
+        "scope": "Synthetic presentation fixture only; not a universal statutory limit."
+      }
+    }
+  },
+  "692e6108a1dc52d2adf5943b458576e69f65cb46d0b9b339b44ebb449e972be1": {
+    "file": "placement.png",
+    "scenario": "placement",
+    "candidates": [
+      {
+        "declaration_group": "D01",
+        "raw_text": "Commodity: Household cleaning powder",
+        "value": {
+          "common_generic_name": "Household cleaning powder"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.171,
+          0.43083333333333335,
+          0.194
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D02",
+        "raw_text": "Manufactured by: Demo Care Products Pvt Ltd\nAddress: 24 Industrial Road, Bengaluru 560001",
+        "value": {
+          "responsible_entity_name": "Demo Care Products Pvt Ltd",
+          "responsible_entity_address": "24 Industrial Road, Bengaluru 560001",
+          "role_label": "MANUFACTURER_PACKER"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.281,
+          0.4816666666666667,
+          0.337
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D03",
+        "raw_text": "Net quantity: 500 g",
+        "value": {
+          "quantity_value": 500.0,
+          "quantity_unit": "g",
+          "quantity_kind": "MEASURE"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.393,
+          0.22583333333333333,
+          0.414
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D04",
+        "raw_text": "MRP: INR 125.00 (inclusive of all taxes)",
+        "value": {
+          "mrp_amount": 125.0,
+          "currency": "INR",
+          "mrp_label": "MRP"
+        },
+        "bbox": [
+          0.4083333333333333,
+          0.5,
+          0.7525,
+          0.521
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D05",
+        "raw_text": "Manufacture date: 08/2026",
+        "value": {
+          "manufacture_month": 8,
+          "manufacture_year": 2026
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.611,
+          0.3016666666666667,
+          0.63
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D06",
+        "raw_text": "Consumer care: Demo Care Office\nCare address: 24 Industrial Road, Bengaluru 560001\nPhone: 18001234567; Email: care@example.test",
+        "value": {
+          "care_name_or_office": "Demo Care Office",
+          "care_address": "24 Industrial Road, Bengaluru 560001",
+          "care_phone": "18001234567",
+          "care_email": "care@example.test"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.721,
+          0.5275,
+          0.81
+        ],
+        "confidence": 0.98
+      }
+    ],
+    "presentation": {
+      "D04": {
+        "id": "ENGINEERING-FIXTURE-ZONE-1",
+        "placement_zone": [
+          0.02,
+          0.1,
+          0.8,
+          0.9
+        ],
+        "minimum_text_height_mm": 2.0,
+        "fixture_ocr_stability": 1.0,
+        "scope": "Synthetic presentation fixture only; not a universal statutory limit."
+      }
+    }
+  },
+  "28d5d3774c413489243568d2e0bd915046920447598294f26a7228415b51692b": {
+    "file": "readability.png",
+    "scenario": "readability",
+    "candidates": [
+      {
+        "declaration_group": "D01",
+        "raw_text": "Commodity: Household cleaning powder",
+        "value": {
+          "common_generic_name": "Household cleaning powder"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.171,
+          0.43083333333333335,
+          0.194
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D02",
+        "raw_text": "Manufactured by: Demo Care Products Pvt Ltd\nAddress: 24 Industrial Road, Bengaluru 560001",
+        "value": {
+          "responsible_entity_name": "Demo Care Products Pvt Ltd",
+          "responsible_entity_address": "24 Industrial Road, Bengaluru 560001",
+          "role_label": "MANUFACTURER_PACKER"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.281,
+          0.4816666666666667,
+          0.337
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D03",
+        "raw_text": "Net quantity: 500 g",
+        "value": {
+          "quantity_value": 500.0,
+          "quantity_unit": "g",
+          "quantity_kind": "MEASURE"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.393,
+          0.22583333333333333,
+          0.414
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D04",
+        "raw_text": "MRP: INR 125.00 (inclusive of all taxes)",
+        "value": {
+          "mrp_amount": 125.0,
+          "currency": "INR",
+          "mrp_label": "MRP"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.5,
+          0.3983333333333333,
+          0.521
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D05",
+        "raw_text": "Manufacture date: 08/2026",
+        "value": {
+          "manufacture_month": 8,
+          "manufacture_year": 2026
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.611,
+          0.3016666666666667,
+          0.63
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D06",
+        "raw_text": "Consumer care: Demo Care Office\nCare address: 24 Industrial Road, Bengaluru 560001\nPhone: 18001234567; Email: care@example.test",
+        "value": {
+          "care_name_or_office": "Demo Care Office",
+          "care_address": "24 Industrial Road, Bengaluru 560001",
+          "care_phone": "18001234567",
+          "care_email": "care@example.test"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.721,
+          0.5275,
+          0.81
+        ],
+        "confidence": 0.98
+      }
+    ],
+    "presentation": {
+      "D04": {
+        "id": "ENGINEERING-FIXTURE-ZONE-1",
+        "placement_zone": [
+          0.02,
+          0.1,
+          0.8,
+          0.9
+        ],
+        "minimum_text_height_mm": 2.0,
+        "fixture_ocr_stability": 0.5,
+        "scope": "Synthetic presentation fixture only; not a universal statutory limit."
+      }
+    }
+  },
+  "7e7f4e50272128691d5a1fb3838c3fa4ef230d402cf64fdf22be46f053b10502": {
+    "file": "nonstandard.png",
+    "scenario": "nonstandard",
+    "candidates": [
+      {
+        "declaration_group": "D01",
+        "raw_text": "Commodity: Household cleaning powder",
+        "value": {
+          "common_generic_name": "Household cleaning powder"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.171,
+          0.43083333333333335,
+          0.194
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D02",
+        "raw_text": "Manufactured by: Demo Care Products Pvt Ltd\nAddress: 24 Industrial Road, Bengaluru 560001",
+        "value": {
+          "responsible_entity_name": "Demo Care Products Pvt Ltd",
+          "responsible_entity_address": "24 Industrial Road, Bengaluru 560001",
+          "role_label": "MANUFACTURER_PACKER"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.281,
+          0.4816666666666667,
+          0.337
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D03",
+        "raw_text": "Net quantity: one generous scoop",
+        "value": {},
+        "bbox": [
+          0.05416666666666667,
+          0.393,
+          0.3641666666666667,
+          0.414
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D04",
+        "raw_text": "Selling price: 125 credits",
+        "value": {},
+        "bbox": [
+          0.05416666666666667,
+          0.502,
+          0.275,
+          0.524
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D05",
+        "raw_text": "Manufacture date: 08/2026",
+        "value": {
+          "manufacture_month": 8,
+          "manufacture_year": 2026
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.611,
+          0.3016666666666667,
+          0.63
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D06",
+        "raw_text": "Consumer care: Demo Care Office\nCare address: 24 Industrial Road, Bengaluru 560001\nPhone: 18001234567; Email: care@example.test",
+        "value": {
+          "care_name_or_office": "Demo Care Office",
+          "care_address": "24 Industrial Road, Bengaluru 560001",
+          "care_phone": "18001234567",
+          "care_email": "care@example.test"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.721,
+          0.5275,
+          0.81
+        ],
+        "confidence": 0.98
+      }
+    ],
+    "presentation": {}
+  },
+  "6135af75941120acf0765af3d9881f37ca412d07dd40472c2474f5f317064e20": {
+    "file": "listing-one-side.png",
+    "scenario": "listing-one-side",
+    "candidates": [
+      {
+        "declaration_group": "D01",
+        "raw_text": "Commodity: Household cleaning powder",
+        "value": {
+          "common_generic_name": "Household cleaning powder"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.171,
+          0.43083333333333335,
+          0.194
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D03",
+        "raw_text": "Net quantity: 500 g",
+        "value": {
+          "quantity_value": 500.0,
+          "quantity_unit": "g",
+          "quantity_kind": "MEASURE"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.283,
+          0.22583333333333333,
+          0.304
+        ],
+        "confidence": 0.98
+      }
+    ],
+    "presentation": {}
+  },
+  "6e67b3cd427415ff0ce8721187a9835951ba6d6d40c5bc95766b0c2cdc3e9102": {
+    "file": "obscured.png",
+    "scenario": "obscured",
+    "candidates": [
+      {
+        "declaration_group": "D01",
+        "raw_text": "Commodity: Household cleaning powder",
+        "value": {
+          "common_generic_name": "Household cleaning powder"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.171,
+          0.43083333333333335,
+          0.194
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D02",
+        "raw_text": "Manufactured by: Demo Care Products Pvt Ltd\nAddress: 24 Industrial Road, Bengaluru 560001",
+        "value": {
+          "responsible_entity_name": "Demo Care Products Pvt Ltd",
+          "responsible_entity_address": "24 Industrial Road, Bengaluru 560001",
+          "role_label": "MANUFACTURER_PACKER"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.281,
+          0.4816666666666667,
+          0.337
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D03",
+        "raw_text": "Net quantity: 500 g",
+        "value": {
+          "quantity_value": 500.0,
+          "quantity_unit": "g",
+          "quantity_kind": "MEASURE"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.393,
+          0.22583333333333333,
+          0.414
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D04",
+        "raw_text": "MRP: INR 125.00 (inclusive of all taxes)",
+        "value": {
+          "mrp_amount": 125.0,
+          "currency": "INR",
+          "mrp_label": "MRP"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.5,
+          0.3983333333333333,
+          0.521
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D05",
+        "raw_text": "Manufacture date: 08/2026",
+        "value": {
+          "manufacture_month": 8,
+          "manufacture_year": 2026
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.611,
+          0.3016666666666667,
+          0.63
+        ],
+        "confidence": 0.98
+      }
+    ],
+    "presentation": {}
+  },
+  "be9312dcb9cadc1f368b6522521762b5a4db6bf59864ab38dbb0f97b257f2dc7": {
+    "file": "absent-care.png",
+    "scenario": "absent-care",
+    "candidates": [
+      {
+        "declaration_group": "D01",
+        "raw_text": "Commodity: Household cleaning powder",
+        "value": {
+          "common_generic_name": "Household cleaning powder"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.171,
+          0.43083333333333335,
+          0.194
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D02",
+        "raw_text": "Manufactured by: Demo Care Products Pvt Ltd\nAddress: 24 Industrial Road, Bengaluru 560001",
+        "value": {
+          "responsible_entity_name": "Demo Care Products Pvt Ltd",
+          "responsible_entity_address": "24 Industrial Road, Bengaluru 560001",
+          "role_label": "MANUFACTURER_PACKER"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.281,
+          0.4816666666666667,
+          0.337
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D03",
+        "raw_text": "Net quantity: 500 g",
+        "value": {
+          "quantity_value": 500.0,
+          "quantity_unit": "g",
+          "quantity_kind": "MEASURE"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.393,
+          0.22583333333333333,
+          0.414
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D04",
+        "raw_text": "MRP: INR 125.00 (inclusive of all taxes)",
+        "value": {
+          "mrp_amount": 125.0,
+          "currency": "INR",
+          "mrp_label": "MRP"
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.5,
+          0.3983333333333333,
+          0.521
+        ],
+        "confidence": 0.98
+      },
+      {
+        "declaration_group": "D05",
+        "raw_text": "Manufacture date: 08/2026",
+        "value": {
+          "manufacture_month": 8,
+          "manufacture_year": 2026
+        },
+        "bbox": [
+          0.05416666666666667,
+          0.611,
+          0.3016666666666667,
+          0.63
+        ],
+        "confidence": 0.98
+      }
+    ],
+    "presentation": {}
+  }
+}

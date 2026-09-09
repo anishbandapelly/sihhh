@@ -1,0 +1,1257 @@
+SMART INDIA HACKATHON 2026
+e-Maap
+Measure Compliance. Protect Consumers.
+Legal Metrology Packaged Commodities
+Final Build-Ready SRS Specification
+Software system to check compliance under the Legal Metrology (Packaged Commodities) Rules, 2011 by scanning products, images and labels.
+[TABLE]
+Prototype commitment | Primary focus | Interfaces
+12 user-visible capabilities | Inspectors and government officers | One unified mobile app + one government web dashboard
+[/TABLE]
+Flagship technical innovation
+Evidence-completeness-aware Rule-to-Evidence Multi-View AI producing an interactive Visual Compliance Map.
+Flagship government impact
+A Verified Pattern-to-Action loop that converts repeated officer-confirmed findings into coordinated investigation and follow-up.
+e-Maap final single-document edition: this SRS contains the Core SIH prototype product scope, technical architecture, rule/evidence behaviour, data model, API contract, UI/visual implementation specification, traceability and coding guardrails required for implementation.
+Product name: e-Maap  |  Tagline: Measure Compliance. Protect Consumers.
+1. Executive Scope
+Why this section exists: Explains the prototype promise, boundaries and build rule so every reader starts with the same definition of what SIH success means.
+e-Maap turns package photographs into source-grounded compliance evidence, preserves officer control over every finding and converts repeated verified results into coordinated government action. It is designed primarily for Legal Metrology inspectors and government officers; the citizen route supplies additional structured leads.
+Build rule: a flagship claim is accepted only when it is enforced by backend logic, visible in the user journey, persisted as an auditable state and covered by an acceptance test. The differentiation therefore begins with implementation, not with the final presentation.
+Prototype feature count
+Why this section exists: Fixes the user-visible scope at 12 capabilities so supporting technical work is not mistaken for extra product scope.
+[TABLE]
+Interface | Count | Purpose
+Secured Inspector pathway | 6 | Capture, understand, verify and report package-level evidence
+Government Dashboard | 4 | Prioritise, review, detect verified patterns and coordinate action
+Citizen pathway | 2 | Generate and track structured public leads
+Total | 12 | Complete end-to-end SIH prototype
+[/TABLE]
+Counting principle: only distinct outcomes that a user can demonstrate are counted as features. OCR, APIs, databases, security controls and rule-engine modules are technical components supporting those 12 outcomes.
+[TABLE]
+Problem need | Core prototype response
+Large product volume and variety | Guided capture and automated extraction reduce manual reading
+Mandatory declarations in prescribed form | Versioned deterministic checks validate extracted evidence
+Products, images and labels | Mobile multi-photo capture handles physical packages; the Government case-review/Copilot pathway also includes a bounded Listing / Image Review for officer-uploaded package or listing screenshots plus supplied product information. Unseen package sides remain an evidence gap, not an absence finding.
+Government inspection workload | Evidence maps, report auto-population and explainable case priority reduce repeated effort
+Repeated violations across the market | Only officer-verified findings feed systemic-pattern alerts
+[/TABLE]
+Problem-statement alignment
+Prototype Framing Boundaries
+Why this section exists: Prevents over-claiming by stating exactly what the bounded prototype does and does not prove.
+[TABLE]
+Prototype scale | Claim / interpretation boundary
+• 3 validated package-shape families + Other Package manual-assisted mode. / • 6 declaration groups for the selected sample. / • Approximately 10-15 manually encoded, versioned legal checks. / • AI assembles and explains evidence; the authorised officer verifies. | • Compliance Map = guided multi-photo coverage / evidence index, not a 3D / 360-degree digital twin. / • Evidence-complete = complete for the selected package type, supported declarations and captured views, not every Legal Metrology rule. / • AI identifies potential violations; the Inspector makes the verified finding. / • Systemic alerts count officer-verified prototype findings only; citizen and AI-only records remain labelled leads.
+[/TABLE]
+2. Product Shape and Primary Users
+Why this section exists: Defines who uses the system, which interface each role receives and the outcome each role must achieve.
+e-Maap has two deployable frontends and three role-specific interfaces. Citizen and Inspector pathways share one React Native codebase, but inspector screens require authenticated government role claims. Government officers use a separate web dashboard.
+[TABLE]
+User | Priority | Interface | Primary outcome
+Legal Metrology Inspector | Primary | Secured mobile pathway | Complete a defensible inspection with less typing and fewer missed evidence areas
+Government / Supervising Officer | Primary | Web dashboard | See priority, review proof and coordinate verified systemic cases
+Citizen | Secondary | Public mobile pathway | Submit a structured lead without being shown an authoritative legal decision
+[/TABLE]
+Access separation
+Why this section exists: Makes role boundaries enforceable in the backend rather than relying on hidden buttons or UI convention.
+The citizen route cannot open inspection assignments, officer verification, reports or government case data. Inspector access is enforced by the backend using authenticated role claims; hiding a button in the mobile interface is not treated as security.
+[TABLE]
+ID | User | Core capability | Demonstrable result
+I1 | Inspector | Secure entry and assigned-case opening | The inspector sees only authorised screens and can download one assignment for field capture
+I2 | Inspector | Package-adaptive guided capture | Three validated shape profiles and an Other Package mode guide multi-photo capture; provenance is recorded automatically
+I3 | Inspector | Quality, coverage and re-capture guidance | On-device checks identify blur, glare or missing coverage even during the bounded offline workflow
+I4 | Inspector | Source-grounded declaration extraction | Every extracted candidate opens its photograph and bounding box; conflicts stay visible
+I5 | Inspector | Visual Compliance Map | Each declaration shows its rule-linked evidence state at a glance
+I6 | Inspector | Synchronisation, verification and report | After upload and server analysis, officer-confirmed values produce one evidence-linked report without repeated entry
+G1 | Government | Explainable priority queue | The queue states what needs attention and why; an officer can override priority
+G2 | Government | Evidence-Grounded Compliance Copilot and case review | The officer can explain a case, analyse officer-uploaded label/listing images with optional supplied product text, identify evidence gaps and possible bounded format/inconsistency concerns, and prepare an inspection brief with sources. Listing review cannot establish absence from an unseen package side.
+G3 | Government | Verified systemic-pattern alert | Related officer-verified findings produce an explained pattern proposal
+G4 | Government | Coordinated investigation and follow-up | Approved related cases are grouped, assigned and tracked under one parent case
+C1 | Citizen | Guided preliminary package scan | The citizen receives understandable possible issues with a clear preliminary-result notice
+C2 | Citizen | Confirm, submit and track complaint | Confirmed evidence becomes a structured, traceable government lead
+[/TABLE]
+3. The 12 Core Prototype Capabilities
+Why this section exists: Provides the authoritative feature inventory that implementation, traceability and judging must all reference.
+4. Flagship System Behaviour: Evidence to Verified Government Action
+Why this section exists: Defines the end-to-end flagship behaviour as code-enforced workflow rather than presentation language.
+This section is an implementation contract, not a pitch description. The flagship is complete only when the behaviours below are enforced in code and can be demonstrated from a real case record.
+Technical flagship: Evidence-Completeness-Aware Multi-View AI
+Why this section exists: Explains how the system gathers enough grounded evidence before it is allowed to reason about compliance.
+Applicable versioned rules create an evidence plan before capture. The app gathers complementary views, checks quality and coverage, extracts candidate declarations, fuses repeated readings and exposes unresolved conflicts. Deterministic checks operate only on grounded facts; insufficient evidence produces a next-capture instruction or abstention, not a forced verdict.
+Inspector output: Visual Compliance Map
+Why this section exists: Defines the inspector-facing evidence index that connects declarations, sources, rules, uncertainty and officer action.
+The map is a package-level visual index. Every declaration links to its source photograph, bounding box, fused value, evidence quality, applicable rule/version and officer action. This gives a fast visual overview without replacing the audit trail with a coloured score.
+Technical flagship implementation contract
+Why this section exists: Turns the flagship concept into non-negotiable invariants that code and tests must enforce.
+[TABLE]
+System invariant | Implementation requirement | Proof visible in the app
+Plan before capture | Rule and package-profile configuration generates required evidence areas and useful views before the camera journey starts | The capture screen asks for the next evidence-bearing view, not a fixed front/back checklist
+Coverage before absence | A declaration may enter Potentially absent only after the validated profile reports adequate coverage or the Inspector confirms coverage in Other Package mode | Missing coverage produces a targeted re-capture prompt; it cannot silently become a violation
+Source before rule | A value is eligible for deterministic validation only when at least one photograph and bounding box are attached | Tapping any map value opens the exact supporting region
+Preserve uncertainty | Conflicting readings, poor quality and obscured regions remain explicit states; fusion cannot silently overwrite them | Alternatives and their sources remain available for officer comparison
+Human before final finding | Potential findings require an authenticated Accept, Correct or Reject transition with officer and reason | No final report finding exists before the officer action
+Provenance by default | Capture automatically records case/Inspector IDs, sequence, GPS/accuracy, capture/sync times and SHA-256; local sync is idempotent | The Inspector sees simple Local, Uploading, Synced or Retry status while the audit record retains the detail
+[/TABLE]
+Government flagship: Verified Pattern-to-Action
+Why this section exists: Explains how verified inspection findings become explainable systemic proposals without automating departmental authority.
+After officer verification, related findings are correlated by product, batch, manufacturer, retailer, location and violated rule. Meaningful recurrence creates an explainable proposal. An authorised officer decides whether to form a systemic investigation, assign coordinated work and track follow-up.
+Government flagship implementation contract
+Why this section exists: Locks the safeguards that keep pattern detection explainable, verified-only and officer-controlled.
+[TABLE]
+System invariant | Implementation requirement | Proof visible in the app
+Verified-only signal | Citizen reports and AI observations remain labelled leads; only officer-verified findings increase the verified pattern count | The alert separates verified, awaiting-verification and citizen-reported records
+Explainable correlation | Every pattern candidate stores linked record IDs, matching factors and the proposed pattern level | An officer can open why the cases were connected and reject an incorrect grouping
+Visual first | Priority cards, geographic summaries and pattern alerts are primary; the Copilot opens with selected context | An officer understands what is happening before asking a question
+Grounded interpretation | The Copilot uses only permission-scoped case, rule, image and pattern tools; every material claim carries a source and verification label | Source cards open the supporting record; unsupported questions produce an evidence-gap response
+Officer-controlled action | Inspection briefs, grouping and assignments remain drafts until an authorised officer approves the state transition | Copilot output cannot create or assign a systemic case by itself
+[/TABLE]
+Mandatory state transitions
+Why this section exists: Prevents invalid shortcuts by defining the only allowed evidence, finding and government-action lifecycles.
+[TABLE]
+Lifecycle | Allowed prototype progression | What it prevents
+Evidence | Planned -> Captured locally -> Quality checked -> Provenance sealed -> Synchronised -> Extracted and fused | Using an untraceable image or running server-only analysis on evidence that never arrived
+Finding | Potential -> Accepted, Corrected or Rejected by an authorised officer | Presenting AI output as a final legal finding
+Government action | Verified case -> Pattern candidate -> Officer-reviewed proposal -> Approved systemic case -> Assigned follow-up | Turning a weak correlation or chat suggestion directly into departmental action
+[/TABLE]
+Why the combination is differentiating
+Why this section exists: Makes clear what is technically distinctive about the governed evidence-to-action chain beyond OCR or a dashboard.
+Most prototypes stop at OCR, a compliance score or a polished dashboard. This prototype closes two practical gaps in one controlled chain: it prevents evidence gaps at the package level and intelligence gaps at the government level. The novelty is the operational architecture that connects evidence completeness, source-grounded rules, human verification and verified cross-case action - not the mere presence of a vision model or chatbot.
+Practical impact: the Inspector spends less time deciding what to photograph, re-reading labels and retyping reports; the supervising officer sees recurring verified risk early and can coordinate one focused investigation instead of treating every case as isolated.
+Flagship claim-to-product traceability
+Why this section exists: Links each flagship claim to visible behaviour, persisted proof and acceptance tests so it cannot exist only in slides.
+[TABLE]
+Flagship claim | Visible behaviour | Stored artifact | Test ID
+No package-level evidence gap is hidden | Next-view guidance, quality warning and explicit map state | Evidence plan, coverage and source references | T1-T4
+Field evidence remains defensible | Automatic provenance and clear local/sync status | Provenance seal, stable evidence ID and hash | T5-T6
+AI does not become the legal authority | Officer Accept, Correct or Reject control | Verification event with reason and identity | T7
+Government patterns are built from verified facts | Status-separated alert and inspectable matching factors | Pattern candidate and linked verified record IDs | T8
+Copilot output is useful but controlled | Source cards, evidence-gap response and editable brief | Answer citations, draft and approval events | T9-T10
+[/TABLE]
+5. Unified Mobile App: Citizen Pathway
+Why this section exists: Defines the small public pathway that creates structured leads without presenting a preliminary scan as an official finding.
+The citizen pathway is intentionally small. It increases the number and structure of possible leads without representing a preliminary scan as an official inspection.
+C1 - Guided preliminary package scan
+Why this section exists: Specifies the citizen capture journey and the system assistance needed to create usable preliminary evidence.
+[TABLE]
+Step | Citizen experience | System action
+1. Select package form | Choose carton, cylinder or pouch | Load the corresponding capture guide
+2. Capture evidence | Follow plain-language angle and close-up prompts | Check image quality and visible coverage
+3. Review extraction | See detected declarations and possible issues | Show source-linked results and uncertainty
+[/TABLE]
+C2 - Confirm, submit and track complaint
+Why this section exists: Defines how preliminary evidence becomes a citizen-confirmed, traceable government lead.
+Before submission, the citizen confirms or corrects the visible product, shop and declaration information. The complaint then enters government intake with its photographs, detected fields and confirmation history. Tracking shows Submitted, Under Review, Inspection Assigned, Inspection Completed or Closed.
+Citizen UI rule
+Why this section exists: Keeps the public experience simple, understandable and clearly non-authoritative.
+Three-step top-level journey: Scan, Confirm, Submit/Track.
+Large capture prompts, plain language and multilingual-ready labels.
+No internal rule-engine terminology or authoritative legal verdict.
+Core citizen components
+Why this section exists: Identifies only the technical pieces required to implement the two citizen capabilities without adding unrelated scope.
+[TABLE]
+Layer | Required components
+Mobile | React Native, TypeScript, NativeWind, camera capture, confirmation and status screens
+API | FastAPI intake endpoints, complaint validation, status and rate protection
+Data | PostgreSQL complaint, product, shop, evidence and status records
+Shared intelligence | Capture quality, OCR, declaration extraction, evidence grounding and preliminary rule result
+[/TABLE]
+6. Unified Mobile App: Secured Inspector Pathway
+Why this section exists: Defines the primary field workflow for capturing defensible evidence, synchronising it and completing officer verification.
+The Inspector pathway is the centre of the prototype. It is designed to preserve defensible field evidence even when connectivity is temporarily unavailable, then complete server analysis, officer verification and reporting after synchronisation.
+Core field journey
+Why this section exists: Shows the inspector task sequence and the system assistance expected at each stage.
+[TABLE]
+Stage | Inspector action | System assistance
+Open case | Review and download one assigned case | Load its package/declaration checklist for field use
+Capture | Follow angled overview and close-up prompts | Assess basic blur, glare and coverage on-device; attach provenance automatically
+Synchronise | Upload the locally preserved evidence when connected | Verify every item, prevent duplicates and start server processing
+Review map | Inspect declaration states and conflicts | Fuse candidates and link each value to its source
+Verify | Accept, correct, reject or add a finding | Preserve reason and evidence association
+Report | Confirm completion | Generate the inspection report from the verified record
+[/TABLE]
+Package-adaptive capture plan
+Why this section exists: Defines how capture guidance changes by package shape so evidence completeness is not reduced to a fixed photo checklist.
+[TABLE]
+Package form | Overview coverage | Targeted evidence
+Rigid cuboid | Angled corner views for cartons, boxes and rectangular packs; top/bottom when applicable | Perpendicular close-up of each required declaration region
+Curved rigid | Overlapping rotational views for bottles, cans, jars and cylinders; top/bottom when applicable | Close-up after the target area is centred to reduce curvature distortion
+Flexible | Front/back angled views for pouches, sachets and packets plus seam/edge coverage | Flattened, glare-controlled close-up without hiding damage or obstruction
+Other Package | Inspector records multiple overview views and manually confirms inspected areas | Targeted close-ups are processed, but automatic completeness is not claimed
+[/TABLE]
+The three validated families are configuration-driven capture profiles, not three individual products. A fixed front/back/left/right checklist is avoided because edges, curves, folds, damage and label continuation can hide declarations. Other Package mode keeps the Inspector operational while clearly requiring manual coverage confirmation.
+Visual Compliance Map evidence states
+Why this section exists: Defines the limited evidence-state vocabulary the inspector must see and resolve consistently.
+[TABLE]
+State | Meaning | Required response
+Supported | Clear grounded evidence supports the result | Officer reviews and verifies
+Conflicting | Different views or extractors disagree | Officer selects/corrects using the sources
+Unresolved | A candidate exists but cannot be trusted | Capture targeted evidence or enter manually
+Obscured / damaged | The required region cannot be read | Record condition and officer observation
+Potentially absent | Coverage is adequate but no declaration was detected | Officer confirms absence; AI alone cannot do so
+Not applicable | The selected rule does not require the field | Store the applicability reason
+[/TABLE]
+Evidence Provenance Seal
+Why this section exists: Specifies the metadata and integrity record that makes each inspector photograph traceable from field capture to server use.
+Every Inspector photograph receives provenance automatically. This strengthens traceability without adding form fields to the capture screen.
+[TABLE]
+Provenance element | Recorded value | Purpose
+Identity | Case ID, Inspector ID and evidence sequence number | Associates the photograph with the authorised inspection
+Place | GPS latitude/longitude and reported accuracy | Records where the field evidence was captured
+Time | Device capture time and server synchronisation time | Preserves the field-to-server chronology
+Integrity | SHA-256 fingerprint calculated at capture | Detects whether the registered image bytes later change
+[/TABLE]
+The seal establishes provenance and file integrity from capture; it is not represented as proof that GPS cannot be spoofed or that the photographed scene itself is genuine.
+Bounded Offline Inspection Mode
+Why this section exists: Defines exactly what remains usable without connectivity and what must wait for server synchronisation.
+[TABLE]
+Works without connectivity | Waits for synchronisation
+Open one previously downloaded assignment | Full OCR and multimodal extraction
+Use cached capture profile and declaration checklist | Cross-view fusion and deterministic rule validation
+Capture photographs, observations and measurements | Visual Compliance Map assembly
+Run basic on-device blur, glare and coverage checks | Pattern correlation and Government Dashboard updates
+Record GPS, time and SHA-256; save securely on device | Officer verification and final report generation
+Manually start synchronisation and retry failed items | Any authoritative departmental action
+[/TABLE]
+Prototype threshold: one downloaded assignment -> offline evidence acquisition and preservation -> manual synchronisation -> server analysis -> officer verification. Offline mode is an operating condition of I1-I3 and I6, not a thirteenth feature.
+7. Government Monitoring Dashboard
+Why this section exists: Defines the supervisory workspace that prioritises cases, reviews evidence and coordinates verified systemic action.
+The visual dashboard and Evidence-Grounded Compliance Copilot work together. The dashboard shows what is happening; the Copilot explains why, identifies evidence gaps and prepares a proposed next action for officer approval.
+G1-G4 government journey
+Why this section exists: Shows how the four government capabilities fit into one operational review-to-action workflow.
+[TABLE]
+Capability | Default view | Officer control
+G1 Explainable priority queue | Cases ranked using severity, recurrence, verified history and evidence readiness | See reasons, filter and override priority
+G2 Compliance Copilot and case review | Verified status, rules, evidence, uploaded package/listing-image observations, supplied listing/product text, related-case summary and explicit evidence gaps | Ask grounded questions, open Listing / Image Review, inspect sources and approve/edit the proposed inspection brief
+G3 Systemic-pattern alert | Repeated verified findings grouped with relationship explanation | Accept, reject or keep as individual cases
+G4 Coordinated investigation | Parent case with linked inspections, assignments and follow-up | Approve grouping, assign officers and update status
+[/TABLE]
+Flagship alert example
+Why this section exists: Provides a concrete reference for what an explainable systemic-pattern proposal should communicate to an officer.
+SYSTEMIC ALERT: Product X / Batch B241Same verified violation across 8 retailers in 3 locationsEvidence: 5 officer-verified findings; 3 awaiting verificationSuspected level: batch/manufacturerPriority reason: cross-retailer recurrence + verified history + severity
+Pattern proposal safeguards
+Why this section exists: Prevents weak, AI-only or citizen-only signals from becoming verified systemic action.
+Only officer-verified findings affect the verified pattern count.
+The alert shows why records were connected and which fields matched.
+The system proposes a suspected pattern level; the authorised officer decides the departmental action.
+An authorised officer must approve creation of the parent systemic case.
+Evidence-Grounded Compliance Copilot
+Why this section exists: Defines the constrained officer assistant and the internal evidence sources it is allowed to use.
+The Copilot is a desk-review and case-preparation assistant, not a generic chatbot. It answers only from permitted internal cases, officer-verified findings, versioned rules and images deliberately uploaded by an authorised user.
+[TABLE]
+Officer action | Grounded response
+Summarise this case | Separates verified facts, citizen-reported claims, AI observations and missing evidence
+Explain why it is prioritised | Shows severity, recurrence, verified history and evidence-readiness factors
+Find related verified cases | Returns matching fields and direct links to the connected records
+Analyse uploaded label images | Shows visible declarations, possible inconsistencies, conflicts and insufficient image coverage
+What must be physically verified? | Converts evidence gaps and applicable rules into a focused capture checklist
+Prepare inspection brief | Drafts product/case context, suspected issue, relevant rule, evidence needs and locations for officer approval
+[/TABLE]
+An absent declaration in an uploaded marketplace image is not treated as an established package violation: the image may simply omit that side. The Copilot must be able to return 'insufficient online-image evidence' and recommend physical verification.
+Bounded Product Listing / Image Review
+Why this section exists: Makes the problem-statement coverage of product images, listings and product information explicit while preventing an online screenshot from being treated as complete physical-package evidence.
+This is a G2 case-review surface, not a new thirteenth capability and not a web-scraping subsystem. A Government officer deliberately uploads an image/screenshot and may supply product/listing text. The system analyses only what is actually visible or supplied, labels every source, and recommends physical verification whenever coverage is incomplete.
+[TABLE]
+Aspect | Prototype contract
+Accepted input | Package/label photograph or e-commerce/listing screenshot; optional product name, listing text/details and source label; optional authorised case context.
+Analysis | Run image quality, OCR, declaration extraction, source-region grounding, applicable bounded rules and FMT-01 format/inconsistency review on visible evidence. Supplied listing text is parsed separately and never masquerades as image evidence.
+Output | Visible declarations, source regions, source-labelled supplied text, possible bounded format/inconsistency concerns, explicit evidence gaps and a physical-verification recommendation when required.
+Absence guard | A declaration not visible in a listing image is NOT POTENTIALLY_ABSENT. Listing/image review never sets absence_eligible=true because unseen package sides may contain the declaration.
+Persistence | When linked to an authorised case, store the uploaded image in the existing evidence model with LISTING_UPLOAD / GOVERNMENT_UPLOAD source metadata and retain source-linked observations. Otherwise the review may remain a transient officer analysis. No new product-master or marketplace database.
+[/TABLE]
+Visual-first interaction
+Why this section exists: Ensures officers understand operational context from the dashboard before relying on conversational assistance.
+Dashboard cards, maps and alerts provide the default glanceable overview.
+Contextual prompt chips open the Copilot from a selected case or alert; the officer is not presented with an empty chat screen.
+Answers use structured evidence cards with source links, verification status, uncertainty and an editable recommended action.
+The Copilot prepares the next action for the government officer; only the officer can approve and assign it to an Inspector.
+8. Explainable AI Technical Architecture
+Why this section exists: Explains the AI/compliance pipeline stage by stage so every generated result remains inspectable and uncertainty is preserved.
+The backend can be technically sophisticated while remaining understandable. Each stage produces an inspectable artifact, and uncertainty is carried forward rather than collapsed into a black-box score.
+[TABLE]
+Stage | Core method | Output shown or retained
+1. Evidence planning | Versioned rules + package capture configuration | Required declarations, applicable checks and requested views
+2. Capture quality | OpenCV geometry, blur, glare and overlap checks | Quality flags, coverage state and next-photo instruction
+3. Region and text extraction | Computer vision + multilingual OCR | Candidate text, label region and bounding boxes
+4. Entity parsing | Typed parsers with selective multimodal assistance | Manufacturer, net quantity, MRP, date and consumer-care candidates
+5. Cross-view fusion | Normalisation and quality-weighted consensus | Selected value, alternatives, source ranking and conflicts
+6. Rule validation | Deterministic versioned Python rules | Rule inputs, result state and explanation
+7. Officer verification | Human-in-the-loop state transition | Accepted/corrected/rejected finding, reason and verifier
+8. Pattern correlation | Explainable matching over verified findings | Related cases, matching factors and proposed investigation level
+9. Officer Copilot | Tool-routed retrieval + constrained language generation | Source-linked explanation, evidence gap and editable inspection brief
+[/TABLE]
+AI explanation contract
+Why this section exists: Defines the minimum grounding and explanation obligations for extraction, rule results and final officer-reviewed findings.
+Every extracted value links to an image and bounding box.
+Every legal result names the rule version and the evidence used.
+Conflicting readings are exposed instead of silently averaged.
+Insufficient coverage triggers re-capture or abstention.
+Every final inspection finding records the officer's action and reason.
+Why this is not ordinary OCR
+Why this section exists: Clarifies the additional evidence, rule, verification and pattern reasoning that differentiates the system from text extraction alone.
+OCR answers 'what text may be visible?' The prototype additionally asks: Was the required package area covered? Which reading is best supported across views? Which rule applies? Is the evidence complete enough to raise a finding? Who verified it? Does the same verified issue recur elsewhere? That governed chain is the technical contribution.
+Case-Level Product Identity and Matching
+Why this section exists: Defines the prototype-friendly identity model used for cross-case matching without building a central product-master system.
+Each complaint or inspection stores its own identity snapshot: product name, brand, manufacturer/packer/importer, variant, net quantity, batch and package family. Officers confirm relevant fields. Pattern matching compares confirmed case snapshots dynamically and exposes the matching factors for officer confirmation, without requiring a separate product-master dataset.
+Copilot grounding architecture
+Why this section exists: Specifies the limited tools the Copilot may call so answers remain permission-scoped and source-grounded.
+[TABLE]
+Copilot tool | Permitted role
+Case and verified-finding search | Retrieve internal records with their verification status
+Versioned rule retrieval | Return applicable provisions and the exact stored version
+Uploaded-image analyser | Reuse capture quality, OCR, extraction and rule components on officer-provided package images or listing screenshots; optional supplied product/listing text remains separately source-labelled. Return evidence gaps when the image does not cover the required package area.
+Pattern explanation | Explain which confirmed fields connected the selected cases
+Inspection-brief composer | Organise grounded facts and evidence gaps; require officer approval before assignment
+[/TABLE]
+9. Core System Architecture
+Why this section exists: Defines the deployable system shape and responsibilities so the team builds one coherent prototype rather than disconnected demos.
+Deployable components
+Why this section exists: Identifies the minimum runtime components and the responsibility owned by each.
+[TABLE]
+Component | Core technology | Responsibility
+Unified mobile application | React Native + TypeScript + SQLite/app-private storage | Citizen experience; secured Inspector capture, provenance and bounded offline case mode
+Government Dashboard | Next.js + TypeScript | Visual queues/alerts, grounded Copilot, evidence review, assignments and follow-up
+Application backend | FastAPI modular monolith | Authentication, cases, evidence, rules, verification, reports and patterns
+Compliance intelligence | Python + OpenCV + OCR + selective vision assistance | Quality, extraction, fusion, deterministic validation and explanations
+Operational database | PostgreSQL | Transactional product, evidence, case, rule, verification and workflow records
+Evidence storage | S3-compatible object storage | Original and processed photographs plus generated reports
+[/TABLE]
+Why a modular monolith
+Why this section exists: Justifies the prototype architecture choice and explicitly avoids unnecessary distributed-system complexity.
+One FastAPI deployment with clear internal modules is sufficient for the SIH prototype. It keeps the data and workflow consistent, is easy for judges to understand and allows independent modules to be separated later without requiring prototype-time distributed-system engineering.
+Core backend modules
+Why this section exists: Defines internal backend boundaries so implementation stays organised without turning them into microservices.
+[TABLE]
+Module | Required responsibility
+Identity and roles | Citizen session, inspector authentication and server-side role enforcement
+Case and assignment | Complaint intake, government cases and inspector assignments
+Capture and evidence | Image receipt, local sync state, provenance seal, quality state and source linkage
+Compliance | Evidence planning, extraction, fusion, rules and map assembly
+Verification and reports | Officer actions, final findings and report generation
+Patterns and workflow | Verified correlation, proposal approval, parent case, assignment and follow-up
+Grounded Copilot | Permission-aware retrieval, uploaded-image analysis, source-linked answers and inspection-brief drafting
+[/TABLE]
+9.1 Final Prototype Technology Stack
+Why this section exists: Locks the technologies used by the bounded prototype so teammates and AI coders do not invent competing stacks.
+This is the explicit implementation stack for the bounded Core SIH prototype. These technologies support the 12 user-visible capabilities; they are not additional features.
+One mobile codebase serves Citizen and Inspector pathways; Inspector screens remain protected by server-side role checks. Government officers use the separate web dashboard.
+Prototype stack by layer
+Why this section exists: Maps each selected technology to the exact prototype responsibility it is expected to fulfil.
+[TABLE]
+Layer | Final technology | Prototype use
+Unified mobile app | React Native + TypeScript | Shared Citizen + secured Inspector mobile codebase
+Mobile UI | NativeWind | Consistent mobile styling and component patterns
+Camera / barcode / QR | Expo Camera | Guided package capture and code scanning
+Location / geotagging | Expo Location | Inspector provenance metadata
+Inspector offline state | expo-sqlite + SQLCipher; expo-file-system | One downloaded assignment, local evidence and manual sync
+Government web | Next.js + TypeScript; Tailwind CSS; Recharts | Priority, evidence review, Copilot, pattern views and follow-up
+Backend / APIs | FastAPI + Python; modular monolith; REST APIs | Identity, cases, assignments, evidence, sync, rules, reports, patterns and Copilot tools
+Authentication / authorisation | JWT + server-side RBAC | Protect Inspector and Government routes
+Computer vision | OpenCV | Quality, blur/glare, geometry, preprocessing and coverage support
+Primary OCR | PaddleOCR | Multi-view package text extraction
+AI fallback | Selective multimodal AI vision model | Difficult / ambiguous evidence only; never the final legal authority
+Parsing / fusion | Python parsing + regex + cross-view consolidation | Typed declarations, alternatives and conflict retention
+Legal compliance | Python deterministic rule engine + versioned PostgreSQL rules | Evidence planning, applicability and approximately 10-15 encoded checks
+Pattern intelligence | Python + PostgreSQL | Explainable matching over officer-verified findings
+Operational data | PostgreSQL | Cases, rules, evidence metadata, verification, workflow and audit history
+Evidence storage / integrity | S3-compatible object storage + SHA-256 | Original / processed evidence, reports and tamper detection
+Reports | WeasyPrint + python-docx | PDF and editable evidence-linked inspection reports
+[/TABLE]
+Intentionally excluded from the Core prototype: Qdrant, embeddings / semantic complaint similarity, LangGraph, Redis, microservices, full offline AI processing, autonomous legal decisions and judiciary workflow.
+Prototype rule: use the smallest stack that proves the governed evidence-to-action workflow. Do not add infrastructure only to make the architecture look more complex.
+10. Core Data, Security and Auditability
+Why this section exists: Defines the data and control requirements needed for evidence integrity, role security, traceability and accountable decisions.
+Minimum data model
+Why this section exists: Lists the business records that must exist before the physical database schema is detailed later in the SRS.
+[TABLE]
+Entity group | Core records
+Identity | User, role and authentication session
+Product and case | Case-level product identity snapshot, package family/profile, citizen complaint, government case and assignment
+Evidence | Photograph, case/Inspector association, GPS/accuracy, capture and sync times, SHA-256, local sync state, processed region, quality result, OCR candidate and bounding box
+Compliance | Rule/version, applicability, extracted value, evidence state and finding
+Human decision | Officer verification, correction/rejection reason and report
+Government action | Pattern proposal, linked cases, approval, systemic investigation and follow-up status
+[/TABLE]
+Security controls required in the prototype
+Why this section exists: Defines the minimum practical controls needed to protect restricted government workflows and preserve auditability.
+[TABLE]
+Control | Prototype implementation
+Authentication | JWT-based application authentication with protected inspector and government routes
+Authorisation | Server-side role-based access checks on every restricted API
+Transport and storage | TLS in deployment; protected database and object-storage credentials
+Audit history | Append-only event records for verification, priority override, pattern approval and status changes
+Offline evidence | Encrypted local case storage, explicit unsynchronised status and deletion only after confirmed server receipt
+Copilot grounding | Role-scoped retrieval; source links and verification labels on generated answers
+Data minimisation | Only information required for inspection, complaint handling and follow-up is collected
+[/TABLE]
+Legal and operational control
+Why this section exists: Reinforces that the system supports officers but does not make the final legal decision by itself.
+The system supports inspection and departmental follow-up. It does not issue a final legal decision by itself. A potential finding becomes an officer-verified result only after an authorised inspector accepts, corrects or rejects the evidence-linked recommendation.
+Synchronisation safety
+Why this section exists: Defines duplicate-safe upload and acknowledgement behaviour for field evidence.
+Each local evidence item carries a unique ID; repeated upload attempts do not create duplicate records.
+The app shows Local only, Uploading, Synchronised or Failed with Retry states.
+Server acknowledgement is required before the app marks evidence as synchronised.
+Full server processing begins only after the required evidence items arrive successfully.
+11. UI/UX Architecture
+Why this section exists: Defines the interaction principles and task hierarchy that the later visual and frontend specifications must preserve.
+Complexity is concentrated in the backend and revealed only when it helps a user make a decision. Each interface uses progressive disclosure: a simple default screen first, followed by evidence detail on demand.
+[TABLE]
+User | Default journey | Design rules | Detailed view on demand
+Inspector | Case -> Capture -> Sync -> Map -> Verify -> Report | One task per screen, large controls, visible network/local status, minimal typing and direct re-capture prompts | Provenance, source images, alternatives, rule inputs and verification history
+Government officer | Visual queue/alert -> Review/Copilot -> Approve/Assign -> Follow-up | Visuals first, contextual prompt chips, structured answers, plain-language priority reasons and consistent status actions | Complete evidence trail, uploaded-image observations, matching factors and audit history
+Citizen | Scan -> Confirm -> Submit/Track | Three-step path, simple prompts, multilingual-ready wording and clear preliminary-result notice | Detected declarations and submitted complaint history
+[/TABLE]
+Inspector screen sequence
+Why this section exists: Fixes the inspector task order so field UI design does not hide or rearrange required workflow steps.
+[TABLE]
+Screen | Primary question answered | Primary action
+Case | What am I inspecting and why? | Start inspection
+Package profile | Which validated family fits, or is Other Package needed? | Select capture guidance
+Capture | Which view is needed next and is it safely stored? | Take / retake photograph
+Sync | Has every local evidence item reached the server? | Synchronise or retry
+Compliance Map | What is supported, conflicting or incomplete? | Open evidence item
+Verification | What should be accepted or corrected? | Record officer decision
+Report | Is the inspection evidence complete? | Generate report
+[/TABLE]
+Government dashboard hierarchy
+Why this section exists: Defines which information must be visible first, which is supporting context and which belongs in case detail.
+Top: urgent counts, current workload and verified-pattern alerts.
+Middle: geographic and violation summaries that support prioritisation.
+Detail: case evidence, rule explanation, officer history and next action.
+Repository: search previous scans, product snapshots, inspection history and generated reports using bounded PostgreSQL filters.
+Copilot entry points
+Why this section exists: Keeps Copilot contextual to a selected case, image or pattern rather than making chat the product’s primary navigation.
+Open from a selected case, uploaded-image review or verified-pattern alert so context is already known.
+Offer prompt chips such as Summarise, Explain priority, Find related cases, Identify missing evidence and Prepare inspection brief.
+Return evidence cards and an editable action proposal; retain dashboard visuals behind the conversation panel.
+12. Prototype Development Plan, Feasibility and Proof
+Why this section exists: Provides a build order that proves connected state transitions progressively instead of producing disconnected clickable screens.
+The team should build connected vertical slices in the order below. Each phase must end in a working state transition and stored evidence, not a clickable screen that imitates the journey. Inspector and government value are completed before the secondary citizen pathway.
+Development order: connected vertical slices
+Why this section exists: Sequences implementation so each phase ends in a working, persisted slice before the team adds the next capability.
+[TABLE]
+Phase | Build scope | Exit gate before the next phase
+P0 - Contracts | Define package profiles, evidence/finding/action states, rule schema, role permissions and representative positive/negative fixtures | A test case can be represented end to end without inventing fields during UI development
+P1 - Field evidence spine | I1-I3: assigned-case access, adaptive capture, local preservation, provenance and on-device quality/coverage guidance | One downloaded assignment survives loss of connectivity and retains traceable evidence with a useful re-capture prompt
+P2 - Compliance decision loop | I4-I6: duplicate-safe sync, extraction, cross-view fusion, deterministic checks, Compliance Map, officer verification and report; bounded placement/font-size/readability checks where evidence permits | A photograph-to-report inspection works without retyping declarations; conflicts and insufficient evidence remain visible; uncalibrated/poor-quality inputs abstain rather than fabricate presentation compliance
+P3 - Government visual action loop | G1, G3 and G4: priority view, verified-only pattern proposal, officer approval, parent case, assignment and follow-up; searchable repository/history surface over existing cases/reports | A newly verified finding changes an explained pattern proposal and can become coordinated work only after approval; a previous scan/report can be retrieved without a separate search service
+P4 - Grounded Copilot | G2: contextual case/rule/pattern tools, officer-uploaded image analysis, source cards and inspection-brief drafting; bounded package/listing-image + supplied product-text review using the same grounded tools | Every material answer is source-linked and status-labelled; the proposed action remains editable and unexecuted; an incomplete listing image returns an evidence gap/physical-verification recommendation rather than unseen-side absence
+P5 - Citizen pathway | C1-C2: reuse capture/extraction components for preliminary scan, confirmation, complaint submission and tracking | A structured lead enters government intake without being presented as an official finding
+P6 - Integration hardening | Role-negative tests, sync retries, integrity checks, difficult images, seeded patterns and repeatable demo reset, T12-T17 presentation/repository checks | All anti-facade acceptance tests pass from the deployable mobile app, dashboard and backend
+[/TABLE]
+Feature-count rule: provenance, offline preservation, state machines, grounding and acceptance gates are cross-cutting technical controls inside the 12 capabilities. They do not create additional user-facing features.
+Feasible prototype boundary
+Why this section exists: Locks the demo scale for packages, declarations, rules, fixtures, patterns, offline behaviour and Copilot actions.
+[TABLE]
+Boundary | Commitment | Judging proof
+Package coverage | Three validated shape families + Other Package manual-assisted mode | Guidance changes by family; the generic mode clearly requires officer-confirmed coverage
+Declarations | Six high-value groups | Each maps to a source region and relevant rule check
+Rules | 10-15 manually encoded versioned checks | Inputs, rule version and result can be inspected
+Evidence samples | Clean, difficult, damaged, conflicting and incomplete examples | System demonstrates success, re-capture, conflict and abstention
+Pattern data | Small seeded set of related officer-verified inspections | Dashboard explains why records form a proposed pattern
+Offline mode | One downloaded assignment with local capture, basic quality checks, provenance and manual sync | Network can be disabled during capture and restored before server analysis
+Copilot | Six grounded officer actions over cases, rules, patterns and uploaded images | Every answer shows source/verification status and requires approval before assignment
+System deployment | One mobile build, one web dashboard and one modular backend | The complete journey runs without mock navigation between disconnected screens
+[/TABLE]
+[TABLE]
+Test | Deliberate condition | Required product response | Persisted proof
+T1 Coverage gate | Omit a required package area | Request the next useful view; do not label the declaration Potentially absent | Coverage state and requested view
+T2 Quality gate | Submit a blurred or glare-heavy photograph | Reject or warn on-device with a specific re-capture instruction | Quality result and replacement link
+T3 Source trace | Open an extracted declaration | Show the exact photograph and bounding box used | Source-reference ID
+T4 Conflict retention | Provide two credible views with different values | Show both candidates and require officer resolution | Candidate set and conflict state
+T5 Integrity | Change registered image bytes | Detect a SHA-256 mismatch | Original and recomputed fingerprints
+T6 Offline retry | Interrupt and repeat synchronisation | Reach Synced without creating duplicate evidence | Stable evidence ID and one server record
+T7 Human finding | Leave an AI result unreviewed | Block final finding/report completion until officer action | Verifier, action, reason and time
+T8 Verified pattern | Add citizen-reported or AI-only related records | Keep them visible but do not increase the verified pattern count | Source-status breakdown
+T9 Copilot grounding | Ask for a conclusion unsupported by permitted sources | State the evidence gap or abstain; do not invent a legal conclusion | Answer-source links and status labels
+T10 Action control | Generate an inspection brief | Keep it editable and prevent assignment until officer approval | Draft, approval and assignment events
+T11 Generic package | Use Other Package mode | Require manual coverage confirmation and avoid an automatic completeness claim | Officer-confirmed coverage record
+T12 Placement check | Use a seeded calibrated/usable fixture where a declaration region lies outside its configured allowed/expected zone | Raise a source-linked POTENTIAL_PLACEMENT_CONCERN; require officer review; never make placement judgement when rule/geometry is not applicable | rule_result inputs include source bbox + zone config + explanation
+T13 Font-size calibration | Run the font-size check once without calibration and once with a seeded below-threshold calibrated fixture | Without calibration return UNMEASURABLE_FONT_SIZE; with valid calibration compute measurement and raise only a potential concern pending officer action | evidence calibration_json + rule_result measured value/threshold/version
+T14 Readability distinction | Provide (a) blurred/glare-heavy capture and (b) quality-passing low-contrast/poor-legibility label fixture | (a) asks for re-capture and does not create readability finding; (b) may raise POTENTIAL_READABILITY_CONCERN with source evidence | quality_json + presentation/rule result + source reference
+T15 Repository/history retrieval | Seed prior scans/reports and search by product/batch/date/rule as Government officer; attempt same route as citizen | Return correct prior case/report rows and drill-down for Government; citizen receives no repository access | existing case/report IDs + role-enforced query response
+T16 Non-standard / inconsistency review | Use reliable seeded evidence with (a) unsupported/non-standard net-quantity expression, (b) malformed selected-fixture MRP representation, and (c) two credible materially different printed values across views | Return the applicable FMT-01 reason code / CONFLICTING state with both sources. Do not make a generic “misleading” legal conclusion; officer review remains required. | rule_results.reason_code + inputs/source refs + declaration_results.review_flags_json / conflict sources
+T17 Listing / image evidence gap | Upload an e-commerce/listing screenshot showing only one package side plus optional listing text; omit a mandatory declaration that may exist on another side | Extract only visible/supplied facts, show source labels and evidence gap, recommend physical verification, and do NOT mark the declaration POTENTIALLY_ABSENT or create a final finding. | COP-02 result/source refs; case-linked LISTING_UPLOAD evidence when attached; absence_eligible remains false
+[/TABLE]
+Definition of Done: anti-facade acceptance tests
+Why this section exists: Defines the negative tests that distinguish a working system from a polished facade.
+A polished screen is not sufficient evidence of completion. The pass condition is the combination of visible behaviour, correct backend guard, stored audit artifact and a repeatable negative test.
+Recommended judging demonstration
+Why this section exists: Provides a short repeatable path through the real prototype states that proves the flagship behaviour to judges.
+Open an assigned inspection using Inspector credentials.
+Select a validated package family, then briefly show Other Package manual-assisted capture and its coverage warning.
+Disable connectivity and capture one assigned inspection using cached guidance, on-device quality checks and the Evidence Provenance Seal.
+Intentionally submit a blurred or incomplete view and show the specific re-capture instruction.
+Restore connectivity, manually synchronise the local evidence and show duplicate-safe upload status.
+Open the Visual Compliance Map and trace an extracted declaration to its image and bounding box.
+Show a conflict or insufficient-evidence state rather than forcing a legal answer.
+Correct or verify a finding and generate the evidence-linked report.
+Open the visual Government Dashboard and show how the verified result changes the related systemic-pattern proposal.
+Open the Copilot from that alert, ask why the cases were connected and inspect the grounded sources.
+Upload an incomplete marketplace label image and show that the Copilot recommends physical verification rather than declaring a violation.
+Generate an inspection brief, approve it, create the parent investigation and assign follow-up.
+The judging sequence above is not a separate presentation layer. It is a short path through the same states, guards and stored artifacts used by the working prototype.
+13. Final Core Prototype Architecture
+Why this section exists: Summarises the complete bounded architecture and the deliverables that must exist together in the final prototype.
+End-to-end operating principle
+Why this section exists: Condenses the system into one implementation narrative from rule-driven evidence planning to officer-approved government action.
+Versioned rules generate the evidence plan; three validated package profiles provide adaptive guidance, while Other Package mode preserves manual-assisted capture. The Inspector can acquire provenance-sealed evidence for one assignment offline, synchronise it for grounded analysis and verify the resulting Compliance Map. The visual Dashboard shows verified patterns; the Copilot explains them and prepares an officer-approved next action. Enforced state transitions and acceptance tests make these product properties, not pitch claims.
+Core deliverables
+Why this section exists: Defines the concrete outputs the team must be able to deploy and demonstrate at SIH.
+[TABLE]
+Deliverable | What must be demonstrable
+Unified mobile application | Citizen scan/complaint path; secured Inspector multi-photo, Other Package, provenance and bounded offline path
+Government Dashboard | Visual priority/pattern views, grounded Copilot, uploaded-image review and coordinated follow-up
+Modular backend | Cases, evidence sync, versioned rules, verification, reports, Copilot tools and pattern workflow
+Compliance intelligence | Adaptive evidence planning, quality control, extraction, fusion, rule validation and explanations
+Prototype dataset | Representative package images, rule cases and related verified records for repeatable demonstration
+Implementation proof | State-transition contracts, negative fixtures and automated acceptance checks for grounding, provenance, sync and human approval
+[/TABLE]
+This document contains only the Core SIH prototype. Every described user capability belongs to the 12-feature commitment; the implementation contracts and tests prove those capabilities without increasing the feature count.
+14. Updated Complete Methodology / Solution Flowchart
+Why this section exists: Shows how existing consumer/government entry routes connect to the current bounded SIH system and verified departmental action.
+This restores the complete top-level methodology from the earlier architecture while updating the proposed-system middle to the current bounded prototype. Consumer and government entry routes stay intact; the inspection, evidence, verification and systemic-action steps now match the Core SIH design.
+Control boundary: AI identifies and explains potential issues; authorised officers verify findings and approve action. Court and judicial decision-making remain outside the prototype.
+15. Build-Ready Implementation Contract
+Why this section exists: Converts the earlier product and architecture decisions into exact rule, evidence and prototype behaviour that code can consume.
+This supplement converts the existing Core SIH architecture into concrete implementation contracts without changing the 12-feature scope. It deliberately does not add microservices, vector databases, autonomous legal decisions, full offline AI, judiciary workflow or any new user-facing capability.
+[TABLE]
+Prototype engineering ruleImplement only what is needed to prove the existing evidence-to-verified-action workflow. A coding decision is valid only when it preserves the current product boundaries, role controls, evidence provenance, human verification and T1-T17 acceptance behaviour.
+[/TABLE]
+[TABLE]
+Implementation pack | What is locked here | What is intentionally not added
+Rule & Evidence Configuration | Six declaration groups, 14 bounded rule-engine checks, capture/evidence gates and demo fixtures | No claim of complete LMPC coverage; no sector-specific food/pharma/cosmetic rule engine
+Prototype ERD + Schema | Minimal PostgreSQL operational model, offline SQLite subset, enums and integrity constraints | No product-master platform, event bus, data warehouse or distributed services
+API Contract | REST endpoints, payload shapes, RBAC, state guards, async analysis and idempotent evidence sync | No GraphQL, WebSockets or service-to-service APIs
+UI Design + Frontend Implementation | Screen map, wireframes, tokens, dynamic states, components and screen/API bindings | No enterprise design system or dozens of decorative screens
+Traceability Validation | C1-C2, I1-I6 and G1-G4 mapped to UI, API, persisted data and tests | No additional feature count
+[/TABLE]
+15.1 Rule and Evidence Configuration
+Why this section exists: Locks the supported declaration/evidence configuration so the compliance pipeline does not invent what to capture or validate.
+The rule engine is intentionally bounded to a small fixture set that demonstrates the architecture credibly. The prototype should use domestic, general-retail packages that do not require food, pharmaceutical or cosmetic-specific compliance logic. This keeps the demonstration within the selected Legal Metrology declaration scope instead of silently importing other regulatory regimes.
+[TABLE]
+Fixture profile | Prototype example class | Why it is chosen | Prototype capture posture
+Rigid cuboid | General household-product carton / box | Demonstrates multiple planar faces and labels that may continue around edges | Angled overview views plus targeted perpendicular close-ups
+Curved rigid | General household liquid bottle / can / jar | Demonstrates curvature, overlap and distortion | Overlapping rotational views plus centred close-ups
+Flexible | General household pouch / packet | Demonstrates folds, glare and seam/edge declarations | Front/back angled overview, seam/edge coverage and flattened close-ups
+Other Package | Inspector-only manual-assisted mode | Keeps field workflow usable outside validated families | Multiple overviews + officer-confirmed coverage; no automatic completeness claim
+[/TABLE]
+Supported declaration groups
+Why this section exists: Defines the six declaration groups used by the prototype and the identifiers shared across rules, data, APIs and UI.
+[TABLE]
+ID | Declaration group | Canonical stored fields | Primary legal-reference family
+D01 | Commodity identity | common_generic_name | Rule 6(1)(b)
+D02 | Manufacturer / packer | responsible_entity_name, responsible_entity_address, role_label | Rule 6(1)(a) + Rule 10
+D03 | Net quantity | quantity_value, quantity_unit, quantity_kind | Rule 6(1)(c)
+D04 | Retail sale price / MRP | mrp_amount, currency, mrp_label | Rule 6(1)(e)
+D05 | Month / year | manufacture_month, manufacture_year | Rule 6(1)(d), subject to configured applicability
+D06 | Consumer care | care_name_or_office, care_address, care_phone, care_email | Rule 6(2)
+[/TABLE]
+Barcode, SKU and batch/lot may still be extracted as product-identity and pattern-matching metadata, but they are not counted as one of the six legal declaration groups in this bounded prototype.
+Fourteen prototype rule-engine checks
+Why this section exists: Defines the bounded set of deterministic checks implemented for the SIH demonstration.
+[TABLE]
+Rule ID | Group | Code-checkable condition | Reference | Engine output
+LMPC-R01 | D02 | Responsible-entity name is present | 6(1)(a) | PASS / FINDING / INSUFFICIENT
+LMPC-R02 | D02 | Responsible-entity address is present and sufficiently structured for officer review | 6(1)(a), 10 | PASS / FINDING / UNRESOLVED
+LMPC-R03 | D01 | Common or generic commodity name is present | 6(1)(b) | PASS / FINDING / INSUFFICIENT
+LMPC-R04 | D03 | Net quantity or count is present | 6(1)(c) | PASS / FINDING / INSUFFICIENT
+LMPC-R05 | D03 | Net quantity/count uses a parseable supported standard unit/count expression for the selected fixture; a reliable but unsupported/non-standard expression is reason-coded for officer review | 6(1)(c) | PASS / FINDING / UNRESOLVED + reason code
+LMPC-R06 | D05 | Configured manufacture month/year declaration is present for the selected fixture | 6(1)(d) | PASS / FINDING / N/A
+LMPC-R07 | D05 | Detected month/year parses to a valid calendar value | 6(1)(d) | PASS / FINDING / UNRESOLVED
+LMPC-R08 | D04 | Retail sale price / MRP declaration is present | 6(1)(e) | PASS / FINDING / INSUFFICIENT
+LMPC-R09 | D04 | MRP amount and the selected fixture’s required MRP label/representation are parseable and structurally consistent; reliable malformed/non-standard representation is reason-coded for officer review | 6(1)(e) | PASS / FINDING / UNRESOLVED + reason code
+LMPC-R10 | D06 | Consumer-care person or office reference is present | 6(2) | PASS / FINDING / INSUFFICIENT
+LMPC-R11 | D06 | Consumer-care address is present | 6(2) | PASS / FINDING / INSUFFICIENT
+LMPC-R12 | D06 | Consumer-care telephone number is present and parseable | 6(2) | PASS / FINDING / UNRESOLVED
+LMPC-R13 | D06 | Consumer-care e-mail address is present and parseable | 6(2) | PASS / FINDING / UNRESOLVED
+LMPC-R14 | ALL | Mandatory declaration text uses English or Hindi/Devanagari; other languages may appear additionally | 6(4) | PASS / FINDING / UNRESOLVED
+[/TABLE]
+[TABLE]
+Legal scope boundary / These are prototype implementation checks over the selected fixture set, not an exhaustive interpretation of the Legal Metrology (Packaged Commodities) Rules. Rule/version records must retain the exact legal reference used for the demo. Rule 9 legibility/prominence is exposed as an image/evidence-quality observation for officer review rather than an autonomous final finding.
+[/TABLE]
+Evidence-plan object
+Why this section exists: Specifies the configuration object that translates rules and package profile into required capture work.
+[TABLE]
+Field | Type | Required meaning
+plan_item_id | UUID | Stable item used across capture, sync and server analysis
+case_id | UUID | Inspection/citizen scan that owns the plan
+declaration_group | enum D01-D06 | What must be evidenced
+applicable_rule_ids | string[] | Versioned rules that may consume this evidence
+required | boolean | Whether the item is required for this selected fixture
+coverage_state | PLANNED / PARTIAL / ADEQUATE / MANUAL_CONFIRMED | Whether enough relevant package area has been inspected
+source_evidence_ids | UUID[] | Usable photos currently grounding the item
+next_capture_prompt | string? | Specific next useful view if coverage/evidence is insufficient
+absence_eligible | boolean | True only after the coverage-before-absence gate passes
+[/TABLE]
+Package-adaptive capture contract
+Why this section exists: Defines the profile-specific guidance logic used to request useful views without pretending every package has the same geometry.
+[TABLE]
+Profile | Initial overview behaviour | Adaptive next-view logic | Absence gate
+RIGID_CUBOID | Capture distinct angled overviews that expose complementary face combinations; top/bottom requested only when applicable | After OCR/quality review, request a close-up of the declaration group with the weakest or missing grounded evidence | All profile-required overview roles are usable AND the declaration-specific search/close-up requirement is covered
+CURVED_RIGID | Capture overlapping rotational overviews around the container; top/base requested only when applicable | Request centred close-up after target label region is located to reduce curvature distortion | Required rotational coverage is usable AND declaration-specific region has been searched/covered
+FLEXIBLE | Capture both broad faces plus seam/edge coverage without hiding folds or damage | Request flattened, glare-controlled close-up for weak declarations | Required broad-face + seam coverage usable AND declaration-specific region covered
+OTHER_PACKAGE | Inspector records several overview views and inspected areas manually | System may suggest close-ups but does not compute automatic completeness | Only officer-confirmed manual coverage can make absence_eligible true
+[/TABLE]
+The user is not shown a rigid six-side checklist. The profile provides starting overview roles; after each usable capture, the next prompt is selected from missing evidence-plan items. This preserves the document's "next evidence-bearing view" behaviour without requiring a 3D reconstruction.
+Declaration-state derivation
+Why this section exists: Defines how extraction, coverage and conflict information is converted into the limited evidence-state vocabulary.
+[TABLE]
+Visible state | System condition | Required next action
+Supported | One or more usable grounded candidates agree sufficiently and the rule inputs are complete | Officer reviews source and verifies
+Conflicting | Two credible grounded candidates disagree after normalization | Officer compares sources and chooses/corrects
+Unresolved | Candidate exists but confidence/structure is insufficient for deterministic use | Targeted recapture or manual officer value
+Obscured / damaged | Expected region is covered but physically unreadable/damaged | Record condition and officer observation
+Potentially absent | No candidate is found AND absence_eligible=true | Officer confirms absence before a finding can exist
+Not applicable | Versioned rule configuration says declaration/check does not apply | Persist applicability reason
+[/TABLE]
+Rule execution guard
+Why this section exists: Prevents deterministic rules from running on ungrounded or insufficient evidence.
+Build evidence plan from package profile + selected rule versions.
+Accept a rule input only when it links to at least one evidence item and bounding box/source region.
+Fuse repeated candidates while preserving alternatives and conflicts.
+If coverage is insufficient, return next_capture_prompt or INSUFFICIENT_EVIDENCE; never create a missing-declaration finding.
+Run only applicable deterministic checks and persist rule inputs, version and explanation.
+Create POTENTIAL findings only; final status requires authenticated Accept, Correct or Reject.
+15.1.1 Bounded Presentation Compliance Checks: Placement, Font Size and Readability
+Why this section exists: Makes the SIH problem-statement requirements for declaration placement, font size and readability explicit without pretending uncontrolled images can support physical measurements.
+These checks are cross-cutting presentation checks that support I3-I5; they do not create new user-facing capabilities and they do not expand the fourteen seeded declaration-presence/format checks. Each presentation result remains source-linked, versioned and officer-reviewable. When the required geometry or calibration is unavailable, the correct result is insufficient presentation evidence - not a guessed pass/fail.
+[TABLE]
+Check ID | Required evidence | Bounded prototype method | Output / guard
+PRES-01 Placement | Selected seeded rule/fixture defines a placement expectation for the declaration. | Use OCR/vision bounding boxes normalised to the package/view geometry and compare them with the configured permitted/expected zone only after the supporting view is usable. | PASS / POTENTIAL_PLACEMENT_CONCERN / INSUFFICIENT_PRESENTATION_EVIDENCE / N/A. Officer verifies any potential concern.
+PRES-02 Font size | Selected seeded rule/fixture defines a minimum character/numeral size and the capture is physically calibrated. | Inspector close-up must include a usable calibration source (fixture-known scale or reference marker). Convert measured pixel height to physical units and compare with the versioned rule threshold; keep measurement tolerance in configuration. | PASS / POTENTIAL_FONT_SIZE_CONCERN / UNMEASURABLE_FONT_SIZE / N/A. Never infer physical size from an uncalibrated citizen/listing image.
+PRES-03 Readability | A quality-passing source region exists for the declaration. | Separate capture quality from label readability. Use local contrast/character visibility plus OCR stability across usable views. A blurred/glare-heavy photo triggers re-capture; only a quality-passing low-legibility label may raise a readability concern. | PASS / POTENTIAL_READABILITY_CONCERN / INSUFFICIENT_PRESENTATION_EVIDENCE / N/A. Officer verifies any potential concern.
+[/TABLE]
+Citizen and marketplace/listing images may show a possible presentation concern, but they cannot produce a physical font-size or placement finding unless the required calibrated/complete evidence exists. The UI should therefore say “physical verification required” rather than imply an authoritative measurement.
+15.1.2 Presentation-analysis data contract
+Why this section exists: Defines the exact evidence/measurement fields shared by analysis, rule results, APIs and UI so presentation checks are auditable instead of being hidden vision-model outputs.
+[TABLE]
+Field | Contract
+source_evidence_id / bbox | Exact photograph and declaration region used for the check.
+placement_zone_id / normalized_bbox | Configured zone reference and measured region coordinates when PRES-01 is applicable.
+calibration_source / px_per_mm | Fixture-known or captured reference scale used by PRES-02; null means font size is unmeasurable.
+measured_text_height_mm / measurement_tolerance_mm | Physical measurement and empirical tolerance; legal threshold stays in the versioned rule configuration.
+contrast_metric / ocr_stability | Evidence used by PRES-03 after capture quality passes.
+presentation_state / explanation | One of the explicit states above plus human-readable reasoning and rule/version reference.
+[/TABLE]
+Persistence rule: reuse declaration_results + rule_results. Store presentation summary in declaration_results.presentation_json and the detailed inputs/output/explanation in rule_results.inputs_json/result_state/explanation. Do not introduce a separate presentation microservice or search index.
+15.1.3 Bounded Non-standard / Potentially Misleading Declaration Review
+Why this section exists: Covers the SIH requirement to detect missing, misleading or non-standard declarations without pretending the prototype can make an open-ended legal or semantic judgement from arbitrary marketing text.
+The prototype treats “misleading/non-standard” as a bounded, explainable review problem. Deterministic checks only flag conditions that are explicitly encoded for the selected fixture or directly evidenced by conflicting reliable sources. Subjective or legally ambiguous wording is escalated to officer review instead of being classified autonomously. This review reuses the fourteen seeded rules and evidence-state logic; it does not increase the rule-count commitment.
+[TABLE]
+Review signal | Evidence condition | Output / guard
+FMT-01A Non-standard quantity expression | Reliable D03 text fails the selected supported unit/count representation in LMPC-R05 while OCR/source quality is usable. | reason_code=NON_STANDARD_QUANTITY_EXPRESSION; preserve raw text + source; potential concern only if the versioned rule supports it; otherwise UNRESOLVED/REVIEW_REQUIRED.
+FMT-01B Non-standard MRP representation | Reliable D04 text is parseable enough to inspect but fails the selected fixture’s encoded MRP label/representation structure in LMPC-R09. | reason_code=NON_STANDARD_MRP_REPRESENTATION; source-linked potential concern for officer review; no generic “misleading price” claim.
+FMT-01C Cross-source declaration inconsistency | Two independently credible source regions for the same declaration retain materially different normalised printed values after calibrated fusion tolerance. | Keep declaration state CONFLICTING and reason_code=POTENTIAL_DECLARATION_INCONSISTENCY; show both sources; officer resolves/corrects.
+FMT-01D Unsupported semantic allegation | The possible issue depends on subjective wording, advertising context or a legal interpretation not encoded in the frozen versioned rules. | reason_code=REVIEW_REQUIRED_UNSUPPORTED_SEMANTIC; do not create an autonomous legal finding; surface evidence and request officer/legal review.
+[/TABLE]
+Missing declarations continue to use the existing coverage-before-absence gate. FMT-01 never bypasses that gate and never converts uncertainty or unseen package areas into a confirmed violation.
+15.2 Prototype Pattern and Priority Configuration
+Why this section exists: Makes the systemic-pattern trigger and explainable priority behaviour concrete while keeping them clearly prototype-configured, not statutory.
+Two prototype-only operational settings must be concrete enough to run, but must not be presented as statutory thresholds.
+[TABLE]
+Configuration | Default prototype behaviour | Boundary
+Pattern candidate trigger | At least 3 officer-verified findings share the same violated rule and a strong identity relation (exact batch, or confirmed manufacturer + product) across at least 2 retailers | Creates only a Pattern Candidate. Citizen reports and AI-only observations stay visible but do not increase verified_count.
+Pattern level | Exact batch match -> batch proposal; otherwise confirmed manufacturer + product recurrence -> manufacturer/product proposal | Officer can reject or change grouping before a systemic case exists.
+Priority ordering | Sort primarily by configured severity rank, then verified recurrence, then evidence readiness; display the factors as text | No opaque ML score and no automatic enforcement action.
+Officer override | Authorised government officer may change priority or reject pattern grouping with a reason | Override is recorded in audit_events.
+[/TABLE]
+16. Prototype ERD and Database Schema
+Why this section exists: Defines exactly what the prototype stores and how records relate so backend, sync, APIs and audit history share one data model.
+The database is a single PostgreSQL operational model for the modular FastAPI backend. S3-compatible storage holds image/report bytes; PostgreSQL stores references, metadata and workflow state. The mobile offline database contains only one downloaded assignment, cached capture configuration, local evidence metadata and a retry queue.
+[TABLE]
+Non-overengineering choice / There is no central product-master dataset, event bus, warehouse, vector store or microservice-owned database. Product identity is stored as a case-level snapshot, exactly matching the existing architecture.
+[/TABLE]
+Prototype operational ERD. Dashed relationships are derived/audit links; image/report bytes remain in object storage.
+16.1 PostgreSQL table contract
+Why this section exists: Specifies the server-side tables and fields needed to implement the defined workflows without inventing additional persistence models.
+[TABLE]
+Table | Key fields | Purpose
+users | id UUID PK; name; email UNIQUE; password_hash; role; active; created_at | Inspector/government identity only
+cases | id UUID PK; case_type; source; status; priority_band; priority_reasons JSONB; parent_case_id FK?; shop_name; shop_location JSONB; public_tracking_token_hash?; created_at; updated_at | Single workflow root for citizen lead, inspection or approved systemic case
+assignments | id UUID PK; case_id FK; inspector_id FK; status; assigned_at; downloaded_at?; completed_at? | Inspector work allocation
+product_snapshots | id UUID PK; case_id FK UNIQUE; product_name; brand?; manufacturer; variant?; net_quantity_text?; batch_lot?; barcode?; package_family; officer_confirmed_json | Case-local identity used for matching
+evidence_plan_items | id UUID PK; case_id FK; declaration_group; required; coverage_state; absence_eligible; next_capture_prompt?; rule_ids JSONB | Planned declaration evidence / capture state
+evidence_items | id UUID PK; case_id FK; captured_by_user_id FK?; sequence_no; source_type; source_context_json JSONB?; storage_key?; mime_type; sha256; latitude?; longitude?; accuracy_m?; captured_at; synced_at?; sync_status; quality_json JSONB; calibration_json JSONB? | Original photo metadata + provenance + source type/context (field, citizen, government or listing upload) + optional physical-scale calibration
+extraction_candidates | id UUID PK; evidence_id FK; declaration_group; raw_text; normalized_value JSONB; bbox JSONB; confidence; extractor; created_at | All OCR/vision alternatives retained
+analysis_runs | id UUID PK; case_id FK; status; failure_code?; started_at?; completed_at?; created_at | Async server analysis lifecycle
+declaration_results | id UUID PK; case_id FK; declaration_group; fused_value JSONB?; evidence_state; selected_candidate_id FK?; source_ids JSONB; presentation_json JSONB?; review_flags_json JSONB?; updated_at | Compliance Map declaration-level artifact including optional presentation summary and bounded format/inconsistency review flags
+rules | id UUID PK; rule_code; version; legal_reference; logic_key; config_json JSONB; effective_from?; effective_to?; active | Versioned deterministic check definition
+rule_results | id UUID PK; case_id FK; rule_id FK; declaration_result_id FK?; result_state; reason_code?; inputs_json; explanation; created_at | Persisted deterministic output, source-linked inputs, bounded review reason code and explanation
+findings | id UUID PK; case_id FK; rule_result_id FK; status; verified_value JSONB?; severity; created_at; updated_at | Potential then officer-controlled finding
+verification_events | id UUID PK; finding_id FK; officer_id FK; action; corrected_value JSONB?; reason; created_at | Append-only Accept/Correct/Reject event
+reports | id UUID PK; case_id FK; status; storage_key?; editable_storage_key?; generated_at?; failure_code? | Evidence-linked report artifact
+pattern_candidates | id UUID PK; status; pattern_level; rule_code; match_factors JSONB; verified_count; retailer_count; created_at; reviewed_by FK?; reviewed_at? | Verified-only recurrence proposal
+pattern_members | pattern_id FK; finding_id FK; match_reason JSONB; PRIMARY KEY(pattern_id,finding_id) | Which verified findings support a pattern
+followups | id UUID PK; systemic_case_id FK; assigned_to FK; status; note?; due_at?; created_at; updated_at | Coordinated investigation work
+audit_events | id UUID PK; actor_id FK?; case_id FK?; event_type; entity_type; entity_id; payload JSONB; created_at | Append-only critical workflow history
+[/TABLE]
+16.2 Core enums and state ownership
+Why this section exists: Locks shared status values and the component responsible for changing them so competing vocabularies cannot emerge.
+[TABLE]
+Enum | Allowed values | Owner / use
+role | INSPECTOR, GOVERNMENT_OFFICER | JWT + server-side RBAC
+case_type | CITIZEN_LEAD, INSPECTION, SYSTEMIC | cases
+case_status | INTAKE, UNDER_REVIEW, ASSIGNED, CAPTURING, SYNCING, ANALYSING, AWAITING_VERIFICATION, COMPLETED, CLOSED | Internal workflow; citizen receives mapped public status
+assignment_status | ASSIGNED, DOWNLOADED, IN_PROGRESS, SUBMITTED, COMPLETED | assignments
+sync_status | LOCAL_ONLY, UPLOADING, SYNCHRONISED, FAILED | evidence_items and mobile queue
+analysis_status | QUEUED, RUNNING, SUCCEEDED, FAILED | analysis_runs
+evidence_state | SUPPORTED, CONFLICTING, UNRESOLVED, OBSCURED_DAMAGED, POTENTIALLY_ABSENT, NOT_APPLICABLE | declaration_results
+finding_status | POTENTIAL, ACCEPTED, CORRECTED, REJECTED | findings
+pattern_status | CANDIDATE, APPROVED, REJECTED | pattern_candidates
+report_status | QUEUED, GENERATING, READY, FAILED | reports
+evidence_source_type | FIELD_CAPTURE, CITIZEN_UPLOAD, GOVERNMENT_UPLOAD, LISTING_UPLOAD | evidence_items; preserves source semantics for G2 review and audit
+[/TABLE]
+16.3 Minimum integrity constraints and indexes
+Why this section exists: Defines the database guarantees required for uniqueness, traceability, idempotency and practical prototype queries.
+[TABLE]
+Constraint / index | Required behaviour
+UNIQUE evidence_items(case_id, sequence_no) | Stable evidence sequence within a case
+Client-generated evidence_items.id | Retry uploads target the same record; no duplicate evidence on sync retry
+UNIQUE rules(rule_code, version) | A report/finding can always name the exact rule version
+CHECK POTENTIALLY_ABSENT requires absence_eligible source plan | Coverage-before-absence enforced in service logic and validated before persistence
+Verification event required for ACCEPTED/CORRECTED/REJECTED finding | Human-before-final-finding
+pattern_members accepts only officer-verified finding statuses | Verified-only systemic signal
+Index cases(status, priority_band) | Government queue
+Index evidence_items(case_id, sync_status) | Sync recovery
+Index findings(rule_result_id, status) + product snapshot match fields | Pattern lookup for small seeded dataset
+Append-only verification_events and audit_events | No update/delete through normal application endpoints
+Index product_snapshots(LOWER(product_name)), LOWER(manufacturer), batch_lot, barcode | Supports bounded PostgreSQL repository search without Elasticsearch/product-master infrastructure
+Index cases(created_at, status) + shop_name; reports(case_id, generated_at) | Supports inspection-history/date/status/report retrieval
+PRES-02 requires non-null usable calibration before physical font-size PASS/FINDING | Uncalibrated images return UNMEASURABLE_FONT_SIZE; no guessed physical measurement
+LISTING_UPLOAD / GOVERNMENT_UPLOAD never makes evidence_plan_items.absence_eligible true by itself | An unseen declaration in an online/listing image remains an evidence gap; only the approved physical/package coverage flow can satisfy coverage-before-absence
+FMT-01 review flags/reason_code must retain source references | Non-standard/inconsistency concerns stay explainable and auditable; no opaque “misleading” classifier
+[/TABLE]
+16.4 Inspector offline SQLite subset
+Why this section exists: Limits local persistence to the exact assignment/evidence data required by bounded offline capture.
+[TABLE]
+Local table | Minimum fields | Sync rule
+offline_assignments | case_id PK, payload_json, downloaded_at, status | Only one active downloaded assignment is required for the prototype
+offline_evidence | evidence_id PK, case_id, local_uri, sha256, capture metadata JSON, quality_json, sync_status | Evidence ID and hash are created at capture time
+sync_queue | id PK, evidence_id, operation, attempt_count, last_error, next_retry_at | Manual sync/retry; successful server acknowledgement removes/marks queue item
+cached_case_config | case_id PK, package_profile_json, evidence_plan_json, rule_version_refs JSON | Capture guidance works offline; full analysis does not
+[/TABLE]
+16.5 Repository, Inspection History and Search Read Model
+Why this section exists: Makes the problem-statement requirement for a repository of scanned products, compliance history and retrieval of previous reports explicit while reusing the existing operational data model.
+Repository is a read view over cases, product_snapshots, evidence, findings, verification events and reports. It is not a separate product-master database and does not require Elasticsearch. For the SIH dataset size, indexed PostgreSQL queries are sufficient. Search results always open the original case/history/evidence/report records rather than duplicating them.
+[TABLE]
+Repository concern | Prototype contract
+Free text | product_name, manufacturer/packer/importer, batch/lot, barcode/SKU when available
+Operational filters | case status, source, retailer/shop, location, rule/issue, officer-verified finding status
+Time filters | inspection/case created date and report generated date
+Result row | case ID, scan/inspection date, product snapshot, retailer/location, issue/rule summary, verification/compliance status, report availability
+Drill-down | Open prior case -> evidence/source regions -> officer verification/history -> generated PDF/editable report
+Access | Government officers only; Inspector access remains limited to authorised assigned cases through existing case endpoints. Citizen route never receives repository data.
+[/TABLE]
+Capability-count rule: repository/search is an implementation surface supporting the existing Government review/monitoring capabilities; it is not counted as a thirteenth user-visible feature.
+17. REST API Contract
+Why this section exists: Defines the frontend/backend boundary so mobile, web and backend work can proceed independently without guessing endpoints or payloads.
+All prototype clients use the same FastAPI modular monolith. Base path: /api/v1. Inspector and government routes require JWT claims and server-side RBAC. The citizen route uses a lightweight session/tracking token and never receives restricted case, officer or assignment data.
+[TABLE]
+Convention | Contract
+Payloads | JSON except image upload/download and generated report files
+Identifiers | UUID strings generated client-side for offline evidence where required
+Time | ISO-8601 UTC timestamps from server; device capture time also preserved
+Async analysis | POST creates/returns analysis_run_id with HTTP 202; client polls status while screen is active
+Errors | {code, message, field_errors?, retryable} with stable machine code
+Idempotency | Evidence content upload is idempotent by evidence_id + SHA-256; repeated identical upload returns current record
+Authorization | Never rely on hidden UI. Restricted records are filtered/validated in the API service layer
+[/TABLE]
+17.1 Endpoint inventory
+Why this section exists: Lists the allowed REST surface, roles and intended use for each prototype capability.
+[TABLE]
+ID | Method + path | Role | Purpose
+AUTH-01 | POST /auth/login | Public | Inspector/government login -> JWT
+AUTH-02 | POST /auth/citizen-session | Public | Issue bounded citizen session token
+AUTH-03 | GET /me | Authenticated | Return role and display identity
+CIT-01 | POST /citizen/scans | Citizen | Create preliminary scan/case + evidence plan
+CIT-02 | POST /citizen/complaints | Citizen | Confirm scan details and create structured government lead
+CIT-03 | GET /citizen/complaints/{reference}/status | Citizen | Return public-safe status only
+INS-01 | GET /assignments/me | Inspector | List assigned cases
+INS-02 | GET /cases/{case_id} | Inspector/Government | Case summary + authorised detail
+INS-03 | GET /cases/{case_id}/evidence-plan | Inspector | Download profile/plan for capture
+EVD-01 | POST /cases/{case_id}/evidence | Inspector/Citizen | Create evidence metadata record using stable evidence_id
+EVD-02 | PUT /evidence/{evidence_id}/content | Inspector/Citizen | Upload image bytes and verify hash
+EVD-03 | POST /cases/{case_id}/sync-complete | Inspector | Assert required local evidence attempts complete; server rechecks receipt
+ANA-01 | POST /cases/{case_id}/analysis | Inspector/Government | Queue extraction/fusion/rules
+ANA-02 | GET /analysis/{analysis_run_id} | Inspector/Government | QUEUED/RUNNING/SUCCEEDED/FAILED
+ANA-03 | GET /cases/{case_id}/compliance-map | Inspector/Government | Declaration states + source references
+VER-01 | POST /findings/{finding_id}/verification | Inspector | Accept / Correct / Reject with reason
+RPT-01 | POST /cases/{case_id}/reports | Inspector | Queue report after verification gates
+RPT-02 | GET /reports/{report_id} | Inspector/Government | Status and authorised download links
+GOV-01 | GET /government/dashboard | Government | Counts, visual summaries and pattern alerts
+GOV-02 | GET /government/cases | Government | Filterable priority queue
+GOV-03 | POST /cases/{case_id}/assign | Government | Assign/reassign an inspection
+PAT-01 | GET /patterns | Government | Pattern candidates
+PAT-02 | GET /patterns/{pattern_id} | Government | Linked verified findings + match factors
+PAT-03 | POST /patterns/{pattern_id}/decision | Government | Approve or reject proposal
+PAT-04 | POST /patterns/{pattern_id}/systemic-case | Government | Create parent systemic case only after approval
+FUP-01 | POST /systemic-cases/{case_id}/followups | Government | Create coordinated follow-up
+FUP-02 | PATCH /followups/{followup_id} | Government/assigned Inspector | Update allowed follow-up status
+COP-01 | POST /copilot/query | Government | Contextual grounded answer
+COP-02 | POST /copilot/analyse-image | Government | Bounded uploaded package/listing-image review with optional supplied product/listing text; return visible observations, format/inconsistency concerns and evidence gaps without inferring unseen-side absence
+COP-03 | POST /copilot/inspection-brief | Government | Draft editable inspection brief; no automatic assignment
+GOV-04 | GET /government/repository | Government | Search/filter previous scans and inspection history using PostgreSQL-backed repository view
+GOV-05 | GET /government/reports | Government | Search/retrieve generated PDF/editable reports and open linked case history
+[/TABLE]
+17.2 Core payload schemas
+Why this section exists: Defines the shared request/response shapes that frontends and backend must implement consistently.
+[TABLE]
+Schema | Required fields
+CaseSummary | id, case_type, status, source, product_snapshot, shop, priority_band, priority_reasons[], assignment?
+EvidencePlanItem | id, declaration_group, required, coverage_state, absence_eligible, source_evidence_ids[], next_capture_prompt?
+EvidenceItem | id, case_id, sequence_no, sha256, captured_at, location?, sync_status, quality, storage_available
+AnalysisRun | id, case_id, status, started_at?, completed_at?, failure_code?, retryable
+DeclarationMapItem | declaration_group, evidence_state, fused_value?, candidate_count, source_refs[], applicable_rules[], verification_status, presentation?{placement,font_size,readability}
+Finding | id, rule_code, rule_version, status, proposed_value?, evidence_refs[], explanation, severity
+PatternSummary | id, status, pattern_level, rule_code, verified_count, awaiting_count, citizen_lead_count, retailer_count, match_factors[]
+CopilotAnswer | answer, evidence_gap?, source_cards[], verification_labels[], proposed_action_draft?
+RepositoryPage | items[{case_id, scanned_at, product_snapshot, retailer, location, issue_summary, verification_status, report_refs[]}], total, page, page_size
+ReportSearchItem | report_id, case_id, product_name, generated_at, status, pdf_available, editable_available
+ListingImageReviewResult | input_kind, source_label?, visible_observations[], supplied_text_observations[], possible_concerns[], evidence_gap?, physical_verification_required, source_refs[], attached_case_id?
+[/TABLE]
+17.3 High-risk endpoint contracts
+Why this section exists: Adds detailed guards, state effects and idempotency where incorrect implementation could break evidence or officer-control invariants.
+[TABLE]
+Contract | Role | Required behaviour
+EVD-02 PUT /evidence/{id}/content | INSPECTOR/CITIZEN | Input: multipart image. Server checks record access, computes SHA-256, compares registered fingerprint, writes S3 object, sets SYNCHRONISED only after success. Same id + same hash -> 200 existing; same id + different hash -> 409 EVIDENCE_HASH_CONFLICT. T5/T6.
+ANA-01 POST /cases/{id}/analysis | INSPECTOR/GOVERNMENT | Precondition: required server evidence received. Returns 202 {analysis_run_id,status:"QUEUED"}. Duplicate request while active returns current run. Pipeline persists candidates -> declaration results -> rule results -> potential findings.
+ANA-03 GET /cases/{id}/compliance-map | INSPECTOR/GOVERNMENT | Returns D01-D06 items, states, fused value/alternatives, source image IDs + bounding boxes, rule/version and next_capture_prompt where incomplete. Never hides conflicts.
+VER-01 POST /findings/{id}/verification | INSPECTOR | Body: {action: ACCEPT|CORRECT|REJECT, corrected_value?, reason}. CORRECT requires value; REJECT requires reason. Creates verification_event, updates finding status, writes audit event. Report cannot complete while required findings remain POTENTIAL.
+PAT-03 POST /patterns/{id}/decision | GOVERNMENT_OFFICER | Body: {decision: APPROVE|REJECT, reason}. Approval does not itself create/assign work; PAT-04 creates parent case separately. Linked citizen/AI-only records remain labelled and do not increase verified_count.
+COP-01 POST /copilot/query | GOVERNMENT_OFFICER | Body: {context_type, context_id, prompt_key_or_text}. Retrieval is limited to authorised case/rule/pattern tools. Response requires source_cards and verification labels; unsupported conclusion -> evidence_gap instead of invented answer.
+COP-02 POST /copilot/analyse-image | GOVERNMENT_OFFICER | Multipart: image, input_kind=LABEL_IMAGE|LISTING_SCREENSHOT, case_id?, product_name?, listing_text?, source_label?. Analyse only visible/supplied evidence; return source-linked observations + FMT-01 concerns + evidence_gap + physical_verification_required. A missing declaration on an unseen side cannot become POTENTIALLY_ABSENT/final finding. If attached to a case, persist using existing evidence_items source_type/context.
+[/TABLE]
+17.4 Common error codes
+Why this section exists: Provides a consistent error vocabulary so frontends can render predictable recovery states.
+[TABLE]
+HTTP | Machine code | UI action
+400 | INVALID_STATE_TRANSITION | Explain why action is not allowed; keep current record
+401 | AUTH_REQUIRED | Return to sign-in / refresh session
+403 | FORBIDDEN_ROLE_OR_CASE | Do not reveal restricted data
+404 | NOT_FOUND | Show not-found/removed state
+409 | EVIDENCE_HASH_CONFLICT / DUPLICATE_DECISION | Stop automatic retry; require user review
+413 | FILE_TOO_LARGE | Ask for new/compressed photo within configured limit
+422 | VALIDATION_ERROR | Highlight fields / unsupported input
+503 | ANALYSIS_TEMPORARILY_UNAVAILABLE | Show retryable analysis error; keep synced evidence intact
+[/TABLE]
+17.5 Repository and Report Search Contract
+Why this section exists: Prevents the frontend or AI coder from inventing a separate search architecture and defines the exact filter/retrieval behaviour required by the SIH problem statement.
+[TABLE]
+Contract | Input | Required behaviour
+GOV-04 GET /government/repository | q?, status?, manufacturer?, batch_lot?, retailer?, location?, rule_code?, finding_status?, date_from?, date_to?, page?, page_size? | RepositoryPage sorted newest-first by default. Query is server-side RBAC filtered and uses PostgreSQL indexed fields/ILIKE for the bounded dataset.
+GOV-05 GET /government/reports | q?, case_id?, status?, date_from?, date_to?, page?, page_size? | Returns authorised report metadata; actual file access continues through RPT-02 so report authorization is not duplicated.
+No-results behaviour | Valid filters with no match | HTTP 200 with empty items[] and total=0; UI keeps filters visible and shows a useful empty state.
+Unsupported broad search | Query would require semantic/vector matching | Do not add embeddings/vector search. Return only deterministic indexed/substring filters for the Core prototype.
+[/TABLE]
+18. UI Design and Frontend Implementation Pack
+Why this section exists: Turns the UI/UX architecture into buildable screens, visual rules, states, components and frontend bindings.
+The existing UI/UX architecture is preserved: one task per inspector screen, a three-step citizen journey, visual-first government views and a contextual Copilot. The purpose of this section is to make those behaviours directly implementable rather than to create a separate product.
+Implementation screen map. Copilot remains contextual to case/pattern review rather than becoming a standalone chat product.
+18.1 Principal screen inventory
+Why this section exists: Locks the minimum screen scope and stable screen IDs so the team does not expand or omit journeys during implementation.
+[TABLE]
+Screen ID | Screen | Primary surface | Primary outcome
+M-CIT-01 | Scan Start | Public mobile entry | Choose supported package profile and start preliminary scan
+M-CIT-02 | Guided Capture | Camera + progress | Follow next evidence-bearing prompt; retake poor image
+M-CIT-03 | Preliminary Result | Source-linked result | See possible issues, uncertainty and preliminary notice
+M-CIT-04 | Confirm + Submit | Confirmation form | Correct product/shop/declaration details; submit lead
+M-CIT-05 | Track Complaint | Status timeline | Submitted / Under Review / Inspection Assigned / Inspection Completed / Closed
+M-INS-01 | Inspector Login | Secure entry | Authenticate government inspector
+M-INS-02 | Assignments | Work list | Open/download assigned case
+M-INS-03 | Case + Package Profile | Case summary | Review trigger and select validated family / Other Package
+M-INS-04 | Guided Capture | Offline-capable camera | Capture provenance-sealed evidence with quality/coverage guidance
+M-INS-05 | Synchronise | Sync queue | Manual upload, progress and retry
+M-INS-06 | Compliance Map | Declaration overview | See Supported/Conflicting/Unresolved/Obscured/Potentially Absent/N/A
+M-INS-07 | Evidence Detail | Source viewer | Open original image, bounding box, candidates and rule/version
+M-INS-08 | Verification | Officer decision | Accept / Correct / Reject with reason
+M-INS-09 | Report | Completion | Generate evidence-linked PDF/editable report
+W-GOV-01 | Dashboard | Visual overview | Workload, geographic summary, verified-pattern alerts
+W-GOV-02 | Priority Queue | Filter/sort cases | See why each case is prioritised; override with reason
+W-GOV-03 | Case Review | Evidence + contextual Copilot | Review proof, gaps, rules and inspection brief
+W-GOV-04 | Pattern Detail | Pattern explanation + contextual Copilot | Inspect linked verified findings and match factors
+W-GOV-05 | Systemic Investigation | Approval/action | Create parent case after approved proposal; assign coordinated work
+W-GOV-06 | Assignments + Follow-up | Operational tracking | Track linked inspections and follow-up state
+W-GOV-07 | Repository + Inspection History | Search/filter table | Retrieve prior scans, inspections, evidence-linked history and PDF/editable reports
+W-GOV-08 | Listing / Image Review | Image/screenshot upload + structured result | Analyse visible package/listing evidence and supplied product text, show possible bounded concerns/evidence gaps, and recommend physical verification when coverage is incomplete
+[/TABLE]
+18.2 Low-fidelity wireframes
+Why this section exists: Locks information hierarchy, required controls and screen structure before implementation; these diagrams are structural references, not final pixel-perfect designs.
+Wireframe fidelity rule: The screen images below are low-fidelity structural references, not final pixel-perfect mockups and not screenshots to copy literally. They lock information hierarchy, required content, principal actions, navigation intent and state placement. The implementing designer/coder must preserve those contracts while producing a polished final interface using Sections 18.3 and 18.8.
+Visual quality target: The final Citizen, Inspector and Government surfaces should look intentionally designed, professional and production-credible - with clean alignment, consistent spacing, readable hierarchy, refined native-quality controls and responsive composition - while remaining restrained departmental software. Improve visual craft, not product meaning: refinement must not change screen scope, permissions, state semantics, evidence-versus-verification meaning or officer-control boundaries.
+Citizen screens: simple preliminary scan, clear uncertainty and a public-safe tracking path.
+Inspector field flow: secure assignment, package-adaptive capture, offline status and explicit manual synchronisation.
+Inspector review flow: Compliance Map -> source evidence -> officer verification -> report.
+Government web: departmental operations layout with work queues and evidence first; maps/charts support prioritisation rather than becoming the visual centre; pattern-to-action remains explainable and officer-controlled.
+18.3 Semantic Visual Design System
+Why this section exists: Defines visual tokens by operational meaning so evidence, verification, uncertainty and failure are never confused.
+Colour is assigned by system meaning, not decoration. The palette separates institutional structure, ordinary interaction, source-backed evidence, officer verification, uncertainty, potential findings and technical failure. This preserves the architecture boundary that AI-supported evidence is not the same as an officer-verified finding.
+[TABLE]
+Token / role | Value | Usage rule
+Institutional Navy | #173B5E | Shared departmental identity: navigation, page hierarchy, strong headers and selected structural emphasis. Not a status colour.
+Action Blue | #1D6393 | Primary non-approval actions, links, selected controls and keyboard focus. Interaction colour, not legal meaning.
+Evidence Teal | #0F6B6D | Source-backed / Supported evidence before officer verification. Keeps machine-supported evidence visually distinct from human approval.
+Verified Green | #2E7D32 | Officer-verified, approved or completed states only. Never used for AI-only potential results.
+Attention Amber | #9A6700 | Conflict, incomplete evidence, review required and retryable conditions.
+Potential Finding | #B54708 | Potentially Absent or other high-attention potential compliance issue. It is not a final violation label.
+Failure / Destructive Red | #B42318 | Technical failure, failed destructive operation or destructive confirmation only; not for ordinary uncertainty or rejection of an AI suggestion.
+Uncertainty Slate | #475467 | Unresolved, unknown, obscured/damaged and neutral uncertainty states.
+Canvas / Surface | #F6F8FA / #FFFFFF | The majority of every screen. Light canvas + white work surfaces keep long operational sessions calm and readable.
+Text / Muted / Border | #17212B / #52606D / #D8E0E7 | Readable neutral hierarchy with visible structure and minimal dependence on shadow.
+Colour occupancy | Neutral first | Approximately 85-90% of ordinary screens should be neutral canvas/surface/text/border. Semantic colours are accents, labels and actions - not large decorative blocks.
+Typography | Platform system sans; Noto Sans fallback where needed | 16px mobile body; 14-16px desktop body; 24px screen title; 26-30px dashboard title. Prefer hierarchy and weight over decorative typography.
+Spacing | 4 / 8 / 12 / 16 / 24 / 32 | 16px mobile edge padding; 20-24px desktop section gaps; compact 8-based component rhythm.
+Geometry | 6-8px standard radius; 8px panels; 1px neutral borders | Restrained departmental geometry. Normal cards/panels are flat; shadow is reserved for overlays, menus and the Copilot drawer.
+Touch / Focus | 48dp mobile target; 2px Action Blue focus ring on web | Field usability and keyboard accessibility are part of the implementation contract.
+Desktop Grid | 12 columns; ~220px left navigation; max content ~1440px | Moderately dense government workspace. Evidence + Copilot may use approximately 2/3 + 1/3 split when Copilot is open.
+[/TABLE]
+Status treatment. Every semantic state uses label + icon + colour; colour alone never carries meaning. Use pale tints as backgrounds and the darker semantic colour for text/icon so the interface remains calm and readable.
+[TABLE]
+State | Foreground | Background | Required cue | Meaning
+Supported evidence | Evidence Teal | Pale teal | check-circle + “Supported” | Evidence is source-backed, but not necessarily officer verified.
+Officer verified / approved | Verified Green | Pale green | verified/check-badge + label | Reserved for explicit human verification or approved action.
+Conflicting / needs review | Attention Amber | Pale amber | warning-triangle + label | Requires comparison or officer review.
+Potentially absent / potential issue | Potential Finding | Pale orange | alert-circle + label | High attention, but still a potential finding.
+Unresolved / obscured | Uncertainty Slate | Pale slate | help/eye-off + label | System cannot reliably establish the value.
+Technical failure | Failure Red | Pale red | error icon + actionable message | Used for actual failures, not ordinary negative evidence.
+Not applicable | Neutral Slate | Neutral surface | minus-circle + “N/A” | No negative implication.
+[/TABLE]
+18.4 Dynamic UI and asynchronous states
+Why this section exists: Defines what users see while capture, sync, analysis and government workflows are incomplete, offline or failed.
+[TABLE]
+Surface | State set | Visible behaviour
+Assignments | LOADING / EMPTY / READY / ERROR | Skeleton/list; useful empty message; retry on error
+Camera permission | REQUESTING / GRANTED / DENIED | Denied state explains how to enable permission; no fake camera screen
+Capture quality | CHECKING / GOOD / BLUR / GLARE / COVERAGE_MISSING | Specific recapture instruction; preserve prior evidence only when intentionally retained
+Evidence sync | LOCAL_ONLY / UPLOADING / SYNCHRONISED / FAILED | Show per-item status; Retry never creates a new evidence ID
+Server analysis | QUEUED / RUNNING / SUCCEEDED / FAILED | Show "Analysing package" with stage text; poll only while screen active
+Compliance Map | PROCESSING / READY / PARTIAL / FAILED / OFFLINE | Partial keeps explicit unresolved items; offline cannot pretend server analysis is available
+Verification | UNREVIEWED / ACCEPTED / CORRECTED / REJECTED | Final action includes identity/time/reason where required
+Report | NOT_READY / QUEUED / GENERATING / READY / FAILED | Block generation until verification guard passes
+Pattern | CANDIDATE / APPROVED / REJECTED | Always show verified vs awaiting vs citizen-source counts
+Copilot | LOADING / GROUNDED_ANSWER / EVIDENCE_GAP / TOOL_ERROR | Source cards required for material claims; evidence gap is a valid result
+Dashboard | LOADING / EMPTY / READY / PARTIAL_ERROR | Independent panels may fail without blanking the whole dashboard
+Presentation checks | NOT_APPLICABLE / CHECKING / PASS / POTENTIAL_CONCERN / INSUFFICIENT / UNMEASURABLE | Keep placement/font/readability separate; never turn missing calibration or poor capture into a legal pass/fail.
+Repository search | IDLE / LOADING / EMPTY / READY / ERROR | Filters remain visible; empty is not failure; retry does not clear current filter state.
+Listing / image review | IDLE / UPLOADING / ANALYSING / READY / EVIDENCE_GAP / ERROR | Always distinguish visible-image observations from supplied text; EVIDENCE_GAP is a valid result; incomplete screenshot never becomes an absence finding.
+[/TABLE]
+18.5 Core reusable component specification
+Why this section exists: Defines the reusable product components whose behaviour and semantics must remain consistent across screens.
+[TABLE]
+Component | Key props / data | Implementation rule
+CaptureGuidanceCard | prompt, declaration_group?, progress, offline | Shows exactly one next evidence-bearing instruction
+CaptureQualityBanner | quality_state, reason, recapture_action | Blur/glare/coverage warning; no generic "failed" message
+SyncStatusRow | evidence_id, status, last_error? | Local / Uploading / Synced / Retry
+DeclarationCard | group, state, fused_value?, source_count, verification | One row/card in Compliance Map
+EvidenceSourceViewer | image_uri, bbox, candidate_text, confidence?, provenance | Original photo + highlighted source region; no hidden alternative
+VerificationControls | finding_id, current_state, corrected_value?, reason | Accept / Correct / Reject; disabled when API/state guard disallows
+PriorityReasonCard | priority_band, reasons[], override? | Explains ordering without opaque score
+PatternAlertCard | pattern_level, counts, rule, locations, status | Separates verified / awaiting / citizen leads
+GroundedSourceCard | source_type, source_id, title, verification_label | Opens supporting case/rule/image record
+CopilotPanel | context, prompt_chips, answer, sources, draft_action | Contextual side panel; no autonomous action
+InspectionBriefEditor | grounded_fields, editable_fields, approval_state | Draft stays editable until officer approval
+StatusTimeline | public_status/current_step or internal follow-up status | Citizen-safe complaint tracking or government follow-up
+PresentationCheckRow | check_type, state, measured_value?, threshold_ref?, source_ref, explanation | Shows placement/font/readability result with source; physical font size displays “Unmeasurable - calibration required” when appropriate.
+RepositoryFilterBar | q, product/manufacturer/batch, retailer/location, rule/status/date filters | Single reusable filter bar; filters map directly to GOV-04 query parameters.
+HistoryResultRow | case_id, date, product, retailer, issue, status, report_refs | Dense government table row; opens existing case/history rather than creating duplicate repository objects.
+ListingReviewPanel | input_kind, image, product_name?, listing_text?, source_label?, result, evidence_gap | Contextual G2 panel/modal. Show source labels on every observation, keep possible concern vs evidence gap distinct, and provide “Physical verification required” when coverage is incomplete.
+FormatReviewFlag | reason_code, declaration_group, state, source_refs[], explanation | Renders bounded non-standard/inconsistency concern as review evidence, never as an unsupported “misleading” legal conclusion.
+[/TABLE]
+18.6 Frontend implementation specification
+Why this section exists: Translates each screen into routes, components, state, API usage, validation and responsive/offline behaviour for coding.
+[TABLE]
+Concern | Implementation contract
+Routing | Use stable screen IDs above. Mobile route guards separate citizen vs inspector; web routes require government role.
+API client | Single typed API wrapper per frontend. Screen components do not construct ad-hoc URLs or invent response fields.
+Server state | Use screen-level hooks/services and explicit loading/error states. No global Redux-style store is required for this prototype.
+Mobile offline state | Inspector capture reads cached case/evidence plan from SQLite, stores files via expo-file-system, and writes a sync_queue item per unsynchronised operation.
+Image upload | Create evidence metadata with stable UUID before upload; calculate SHA-256 at capture; upload content using the same ID.
+Analysis polling | After ANA-01, poll ANA-02 every ~2-3 seconds only while the analysis screen is active; stop on SUCCEEDED/FAILED or when leaving the screen.
+Forms | Validate required local fields before submit; server remains authoritative. Correct/Reject reasons are enforced by server and mirrored in UI.
+RBAC | UI may hide unavailable actions for clarity, but security relies on API 403 checks.
+Copilot | Always pass an existing context_id; render structured answer + sources + status labels. Do not implement an empty general-chat home.
+Responsive web | Dashboard supports desktop first; case review collapses Copilot side panel below evidence on narrow widths. No separate mobile government app.
+Accessibility | Text/icon labels accompany semantic colours; 48dp mobile targets; keyboard-focus states on web; meaningful image alt text for non-evidence UI assets.
+Presentation analysis | Treat legal threshold/zone config as backend rule data. Frontend renders states/measurements only; it must not recompute legal font-size/placement decisions locally.
+Repository search | Use GOV-04/05 with debounced submit or explicit Search; no client-side full-history cache, vector search or separate search service. Preserve filters across result drill-down where practical.
+Listing / image review | W-GOV-08 calls COP-02; image/supplied text observations remain separately source-labelled. Frontend must render evidence_gap/physical_verification_required explicitly and must not derive absence or legal findings client-side.
+Non-standard / inconsistency | Render backend FMT-01 reason codes and source references. Do not implement a separate client-side “misleading” classifier or reinterpret rule results.
+[/TABLE]
+18.7 Screen-to-API implementation bindings
+Why this section exists: Connects each principal UI surface to its server contract so frontend code does not invent data access patterns.
+[TABLE]
+Screen(s) | API contract | Primary state/data
+M-CIT-01/02 | CIT-01, EVD-01, EVD-02 | Local camera state + EvidencePlanItem
+M-CIT-03 | ANA-01, ANA-02, ANA-03 | AnalysisRun + DeclarationMapItem; preliminary notice always visible
+M-CIT-04 | CIT-02 | Confirmed product/shop fields + structured complaint payload
+M-CIT-05 | CIT-03 | Public status only
+M-INS-01 | AUTH-01, AUTH-03 | JWT role=INSPECTOR
+M-INS-02/03 | INS-01, INS-02, INS-03 | Assignments + case + cached profile/evidence plan
+M-INS-04/05 | EVD-01, EVD-02, EVD-03 | SQLite + file-system + per-item sync state
+M-INS-06/07 | ANA-01/02/03 | Map item -> source image/bbox and alternatives; presentation placement/font/readability results
+M-INS-08 | VER-01 | Finding + verification event
+M-INS-09 | RPT-01/02 | Report status + download
+W-GOV-01/02 | GOV-01/02 | Priority reasons, counts, pattern alerts, case filters
+W-GOV-03 | INS-02, ANA-03, COP-01/02/03 | Case evidence + contextual Copilot
+W-GOV-04 | PAT-02, COP-01 | Verified source breakdown + match factors
+W-GOV-05 | PAT-03/04, GOV-03 | Approve proposal -> create parent case -> assign
+W-GOV-06 | FUP-01/02 | Follow-up list/status
+W-GOV-07 | GOV-04/05, INS-02, RPT-02 | RepositoryPage -> prior case detail/evidence -> authorised report download
+W-GOV-08 | COP-02; optional INS-02 when case-linked | ListingImageReviewResult -> visible/supplied observations + FMT-01 flags + evidence_gap -> physical verification recommendation
+[/TABLE]
+18.8 Visual UI Direction and Screen Styling Specification
+Why this section exists: Defines how the finished product should look and feel while preserving a restrained, credible departmental operations character.
+Design-fidelity rule: The visual specification defines the finished design language; the low-fidelity wireframes define structure. The final build should not look like the primitive wireframe drawings. Within the locked content, actions, semantic colours and departmental restraint rules, the frontend may refine composition, spacing, typography, icon treatment and responsive layout to achieve a coherent, good-looking UI.
+Design character: Modern Departmental Operations System. The Inspector pathway and Government Dashboard are two working surfaces of the same Legal Metrology departmental system, not separate brands. The interface should feel official, dependable, evidence-focused and current, but deliberately restrained: operational clarity takes priority over decorative polish. The Citizen pathway uses the same identity with a simpler public-service presentation. Visual choices must reinforce the control hierarchy: evidence is not a finding, AI-supported is not officer-verified, and a pattern candidate is not approved government action.
+Visual restraint principle: Most screen area should remain neutral canvas, white surfaces, dark text and simple borders. Semantic colours appear only where they communicate state, action or priority. Avoid turning the system into a card-heavy SaaS dashboard; tables, lists, evidence panels and clear forms are the default departmental patterns.
+18.8.1 Role-specific visual character
+Why this section exists: Explains how Citizen, Inspector and Government surfaces share one identity while adapting density and interaction to each context.
+[TABLE]
+Interface | Visual character | Layout / density rule | Primary hierarchy
+Citizen | Public-service intake | Same institutional identity, but simpler language, more whitespace and single-column guidance. Slightly softer presentation is allowed; no internal rule/provenance terminology. | Scan -> understand possible issue -> confirm -> submit/track.
+Inspector | Departmental field operations | Same departmental visual system as Government web, adapted for field use: larger targets, highest contrast, camera/evidence dominant, minimal typing, persistent local/sync state. | What do I do now? -> what happened? -> what evidence supports it?
+Government officer | Departmental administrative console | Moderately dense operational workspace. Work queues, filters, tables and evidence panels are primary; compact visual summaries support prioritisation; Copilot remains contextual. | What needs attention? -> why? -> what proof? -> what action can I approve?
+[/TABLE]
+18.8.2 Global layout and surface rules
+Why this section exists: Sets the common visual grammar for spacing, panels, borders, density and hierarchy across mobile and web.
+[TABLE]
+Surface | Specification | Reason / guardrail
+Mobile frame | 16px horizontal edge padding; 12-16px component gaps; 20-24px section gaps; one main column. | Avoid decorative nested cards. Camera, evidence and the current task receive the largest area.
+Mobile top bar | 56-60px; back/context on left; concise case/product reference; connectivity/sync indicator on right when relevant. | Inspector mobile should read as a departmental field tool, not a consumer dashboard.
+Mobile primary action | Full-width or near-full-width 48-52dp control, sticky near bottom when the task has one dominant next step. | Use Action Blue by default; Verified Green only when the action itself verifies/approves.
+Government shell | ~220px left navigation + 12-column content area; ~64px header; 20-24px page padding; max content ~1440px. | Overview / Cases / Repository / Patterns / Assignments for the Core prototype; preserve one consistent departmental shell.
+Summary strip | Compact inline counters or small bordered summary cells at the top of dashboard pages. | Communicate workload quickly without oversized KPI tiles.
+Cards / panels | White surface, 1px #D8E0E7 border, 6-8px radius, no normal shadow. | Use cards only when grouping adds meaning - evidence group, pattern proposal, alert, or contextual summary.
+Tables / work queues | Primary desktop pattern: clear headers, row dividers, 44-48px minimum row target, filters above, consistent status/action columns. | Government work is case- and task-oriented; do not replace useful tables with decorative card grids.
+Forms | Labels above controls; 44-48px height; helper/error text directly below field. | Minimal typing on Inspector flow; server remains authoritative.
+Repository / history | Desktop table-first view: search field + compact filters above a sortable result table; case/report drill-down reuses existing detail screens. | Do not replace with a card grid, semantic-search chatbot or separate product-master UI.
+[/TABLE]
+18.8.3 Flagship screen styling
+Why this section exists: Defines the visual treatment of the screens judges and users rely on most, including Capture, Compliance Map, Verification, Dashboard and Pattern review.
+[TABLE]
+Screen / surface | Required visual hierarchy | Must not do
+Citizen Guided Capture | Large instruction title -> camera -> simple progress -> one capture action. Package-shape guide overlays are the main custom visual asset. | No rule IDs, confidence percentages, provenance hashes or government case terminology.
+Citizen Preliminary Result | Plain-language list/cards grouped as detected / possible issue / needs better photo; preliminary notice remains persistent. | Never display an authoritative “compliant/non-compliant” verdict or make the result look like an officer finding.
+Inspector Guided Capture | Departmental field header + case reference; camera occupies most of viewport; next evidence-bearing instruction above; progress + quality/coverage feedback below; offline/sync state always visible. | No dashboard cards, charts, decorative illustration or multiple competing actions.
+Visual Compliance Map | Compact declaration evidence list. Each row shows declaration, fused value, evidence state, source count and officer verification state; opening it goes directly to source evidence. | No geographic metaphor, no aggregate compliance-score gauge and no large decorative colour blocks.
+Evidence Detail | Original photo is primary; bounding box clearly highlighted; candidate values, alternatives, quality/provenance and rule/version are structured beside/below it. | Do not bury source evidence under multiple modal layers or replace it with a summary-only card.
+Officer Verification | Evidence summary first; then deliberate Accept / Correct / Reject controls. Accept/verified action may use green; Correct uses blue; Reject recommendation is neutral/outlined unless destructive. | Rejecting an AI recommendation is not an error and must not be styled as a red failure.
+Government Dashboard | Compact workload summary strip -> priority work queue/table -> supporting geographic/violation summary -> verified pattern proposals. Filters and drill-down actions remain prominent. | “Visual-first” means officers see operational evidence before Copilot; it does not mean chart-heavy, card-heavy or decorative KPI dashboards.
+Pattern Detail | Recurrence statement first; verified / awaiting / citizen counts separated; matching factors + linked records visible in a structured list/table; approval action separated from explanation. | Pattern candidate must never look already approved.
+Contextual Copilot | Plain right-side assistance panel beside case/pattern evidence; prompt chips; structured answer; source references; editable draft action. | No purple AI gradient, sparkle branding, mascot treatment or autonomous-action affordance. Evidence remains visible next to AI output.
+Presentation checks in Evidence Detail | Source image/bounding box first -> Placement / Font size / Readability rows -> measured value/calibration status -> rule/version -> officer action when concern exists. | Do not show a physical font-size pass/fail when calibration is missing; do not style a poor photograph as a label violation.
+Repository & Inspection History | Search + filters first -> dense previous-scan table -> verification/status -> report availability -> drill into case/evidence/history. | No decorative card grid, no separate product-master browsing concept, no AI-generated “similar product” search.
+Listing / Image Review | Input/source identity -> uploaded image/screenshot -> visible declaration/source-region results -> supplied product/listing text (separately labelled) -> bounded concerns -> evidence gap / physical-verification action. | Do not imitate a marketplace browser, scrape sites, hide source type, or mark an unseen declaration absent.
+[/TABLE]
+18.8.4 Core component appearance
+Why this section exists: Defines how the principal reusable components should visually communicate state and action without decorative inconsistency.
+[TABLE]
+Component | Visual treatment | Usage rule
+Primary Button | Solid Action Blue, white label, 6-8px radius, 48-52dp mobile height. | Default forward action; one dominant primary action per task screen.
+Verified / Approve Button | Solid Verified Green only when the click itself records verification/approval. | Do not use green for ordinary Next/Continue.
+Secondary Button | White/neutral surface, 1px Action Blue or neutral border, dark label, 6-8px radius. | Correct, view source, cancel, secondary navigation.
+Destructive Button | Failure Red only for genuinely destructive confirmation if present. | Not used for “Reject AI recommendation”.
+Status Label / Chip | Compact semantic icon + explicit text; pale tint only when helpful; small radius. | Do not turn every metadata field into a pill. Never colour-only.
+Declaration Row | Primarily a structured bordered row: declaration + fused value left; state + source count + verification right; chevron if drill-down. | Prefer rows over large cards to keep the Compliance Map efficient and departmental.
+Quality Warning | Inline bordered message near camera action; short reason + exact recapture instruction. | No generic “Something went wrong” and no decorative warning illustration.
+Priority Reason | Short text block or compact band with 2-4 human-readable factors; optional override action. | No unexplained numeric AI score or “risk meter”.
+Pattern Proposal | White bordered panel/table section with subtle 3px semantic accent; identity, recurrence, source-status counts, matching factors and Review action. | Do not make candidate state visually equivalent to approved systemic case.
+Grounded Source Row | Small neutral evidence row with source type, title/ID, verification label and open action. | Every material Copilot claim must remain traceable without dominating the page.
+[/TABLE]
+18.8.5 Data visualisation, motion and feedback
+Why this section exists: Keeps charts, maps, loading and animation useful and restrained so they support operations rather than become presentation effects.
+[TABLE]
+Area | Specification | Boundary
+Charts | Use a restrained navy / Action Blue / Evidence Teal family. Amber/orange highlights attention; green only for verified/completed information. Prefer one or two series when possible. | Charts support an operational question; they are not decorative dashboard furniture.
+Geographic view | Bounded prototype: simple location markers / density or location summary sufficient to demonstrate recurrence across locations. | Keep it secondary to the work queue and do not turn the SIH prototype into a GIS platform.
+Loading | Use compact skeletons for lists/tables and explicit stage text for AI processing: Queued -> Analysing -> Ready. | No unexplained spinner for long-running analysis.
+Motion | 100-180ms subtle state/overlay transitions; progress only when it communicates system state. | No decorative motion, parallax or animated AI effects.
+Offline | Neutral/slate offline indicator with plain text; retain actionable sync state. | Offline is an operating condition, not a failure, and should not be red.
+Retryable failure | Amber warning + explicit Retry action; red only when the operation is genuinely failed/non-retryable. | Distinguish technical failure from incomplete evidence and from an officer rejecting an AI recommendation.
+[/TABLE]
+18.8.6 Accessibility, branding and implementation guardrails
+Why this section exists: Prevents inaccessible, unauthorised or over-styled UI choices while keeping mobile and web visually coherent.
+• Status meaning must use text + icon + colour. Target at least 4.5:1 contrast for normal text; do not communicate legal/evidence state by colour alone.
+• Use platform system fonts for mobile and system-ui on web, with multilingual-capable fallback such as Noto Sans where needed. Do not add a decorative web font merely for branding.
+• Keep mobile touch targets at least 48dp and web keyboard focus visibly rendered with the Action Blue focus treatment.
+• Do not use a Government of India emblem, departmental seal or official identity asset unless the team has an authorised source/right to use it. The prototype may use a neutral “Legal Metrology Compliance” product wordmark.
+• Custom illustration work is limited to package-shape capture guides and genuinely useful empty-state guidance. Ordinary controls use one consistent outline icon family.
+• Dark mode is outside Core SIH prototype scope. Build one coherent light operational theme first.
+• Do not use glassmorphism, neon AI colours, heavy gradients, giant rounded cards, excessive pills, generic AI sparkle branding, large compliance-score gauges or heavy animation.
+• React Native NativeWind and Next.js Tailwind must share the same semantic token names even if platform-specific implementation details differ.
+Shared departmental identity rule: Inspector and Government surfaces use the same visual language. Their difference is interaction density and context of use: field capture on mobile versus administrative review on desktop. Do not create separate visual brands for the two government roles.
+18.8.7 Frontend visual acceptance checks
+Why this section exists: Defines testable visual criteria so a functionally correct build also matches the intended departmental UI semantics and quality.
+[TABLE]
+Check | Requirement | Pass condition
+VUI-01 | Supported AI evidence is visually distinct from officer-verified evidence. | Supported uses Evidence Teal; verified/approved uses Verified Green; both include explicit labels/icons.
+VUI-02 | Inspector capture is usable as a departmental field tool. | Camera is dominant; case reference, next instruction, progress and offline/sync state are immediately visible; one primary action.
+VUI-03 | Compliance Map preserves evidence hierarchy. | Each declaration exposes value + state + source count + verification and opens its exact source; no aggregate compliance score.
+VUI-04 | Government officer sees work and evidence before Copilot. | Priority queue/table and case/pattern evidence are primary; Copilot opens contextually beside them.
+VUI-05 | Uncertainty and failures are not conflated. | Offline, unresolved evidence, potential finding, retryable warning and technical failure have different semantic treatments.
+VUI-06 | Inspector mobile and Government web feel like one departmental system. | Shared identity, token names, typography, borders, navigation grammar, status semantics and icon family are used across both.
+VUI-07 | Government UI is operational rather than decorative. | Tables/work queues and evidence panels dominate; summary counters are compact; maps/charts are supporting; ordinary panels have no shadow and restrained radius.
+VUI-08 | Colour is semantic and restrained. | Most screen area remains neutral; semantic colours are limited to actions, statuses, alerts and small emphasis areas.
+[/TABLE]
+18.9 Repository and Presentation-Check UX Contract
+Why this section exists: Makes the newly explicit SIH requirements visible in the actual Government/Inspector journeys instead of leaving them as backend-only capabilities.
+[TABLE]
+Surface | Required behaviour
+Inspector Evidence Detail | Show Placement, Font size and Readability beneath the source evidence only when applicable. Every row names its state, evidence/calibration basis and rule/version; “Unmeasurable” and “Insufficient evidence” are valid results.
+Compliance Map | Keep the six declaration evidence states as the primary summary. A presentation concern appears as a secondary indicator on the affected declaration, never as a replacement aggregate compliance score.
+Government Repository | W-GOV-07 uses the same departmental shell. Search/filter previous scans and reports, open prior case/evidence/verification history, then retrieve authorised PDF/editable reports.
+Citizen / Government listing image | Citizen may show a possible readability/presentation concern. W-GOV-08 may analyse officer-uploaded package/listing screenshots plus supplied product text. Both must preserve source labels; neither may infer physical font size or unseen-side absence without the required physical/calibrated evidence.
+[/TABLE]
+19. Traceability Validation and AI-Assisted Coding Guardrails
+Why this section exists: Ensures every promised capability resolves through behaviour, data, API, UI and test, and constrains AI-assisted implementation from drifting.
+This matrix is the final anti-facade check. Every existing user-visible capability must connect to a concrete screen, API, persisted artifact and acceptance test. If one link is absent, the feature is not complete even if the UI looks finished.
+[TABLE]
+Capability | UI | API | Persisted proof | Acceptance proof
+I1 | M-INS-01/02/03 | AUTH-01/03, INS-01/02/03 | users, cases, assignments, cached_case_config | T6 + role-negative tests
+I2 | M-INS-03/04 | INS-03, EVD-01 | evidence_plan_items, evidence_items | T1, T11
+I3 | M-INS-04 | EVD-01, ANA-03 | evidence_items.quality_json/calibration_json, evidence_plan_items, rule_results | T1, T2, T13, T14
+I4 | M-INS-06/07 | ANA-01/02/03 | extraction_candidates, declaration_results.presentation_json/review_flags_json, rule_results.reason_code | T3, T4, T12-T14, T16
+I5 | M-INS-06/07 | ANA-03 | declaration_results, rule_results, presentation/format-review summary, source refs | T1, T3, T4, T12-T14, T16
+I6 | M-INS-05/08/09 | EVD-02/03, VER-01, RPT-01/02 | evidence_items, verification_events, reports | T5, T6, T7
+G1 | W-GOV-01/02 | GOV-01/02 | cases.priority_*, audit_events | priority override test
+G2 | W-GOV-03/07/08 | COP-01/02/03, INS-02, ANA-03, GOV-04/05, RPT-02 | case/rule/evidence sources, listing/government-upload source metadata, product snapshots, reports; review flags/audit as needed | T9, T10, T15-T17
+G3 | W-GOV-01/04 | PAT-01/02/03 | pattern_candidates, pattern_members, findings | T8
+G4 | W-GOV-05/06 | PAT-04, GOV-03, FUP-01/02 | systemic cases, assignments, followups, audit_events | T10 + follow-up state test
+C1 | M-CIT-01/02/03 | CIT-01, EVD-01/02, ANA-01/02/03 | cases, evidence, declaration_results | T1/T2-style citizen fixtures
+C2 | M-CIT-04/05 | CIT-02/03 | cases, product snapshot, public tracking token | public-status privacy test
+[/TABLE]
+19.1 AI-assisted coding guardrails
+Why this section exists: States the non-negotiable rules an AI coder must preserve rather than replacing them with plausible alternative designs.
+Do not create new user-facing capabilities, services or infrastructure that are not required by C1-C2, I1-I6 or G1-G4.
+Do not invent new status names. Use the enums in Section 16 and map citizen-facing statuses separately.
+Do not invent endpoint names or payload fields when an API contract exists; update the contract first if a genuine implementation gap is found.
+Do not treat OCR/vision output as a verified legal finding. AI creates candidates and potential findings only.
+Do not set POTENTIALLY_ABSENT unless the corresponding evidence-plan item is absence_eligible.
+Do not discard conflicting extraction candidates; preserve source IDs and bounding boxes for officer comparison.
+Do not mark an evidence item SYNCHRONISED until server receipt and hash validation succeed.
+Do not create duplicate evidence records on retry; reuse the stable evidence UUID.
+Do not count citizen leads, unverified AI observations or rejected findings in verified systemic-pattern counts.
+Do not let Copilot output create a systemic case, approve a proposal or assign an inspector by itself.
+Do not add a separate product-master, vector database, microservice split, WebSocket layer or full offline AI path for the SIH core unless the architecture is explicitly changed.
+Do not infer physical font size from pixels unless a valid calibration source is attached; return UNMEASURABLE_FONT_SIZE instead.
+Do not convert a blurred/glare-heavy photograph into a label-readability finding; image quality failure must first request re-capture.
+Do not add Elasticsearch, embeddings or a second product database for repository search; use the indexed PostgreSQL read model in Section 16.5.
+Do not implement a generic AI “misleading declaration detector.” Only FMT-01 reason-coded conditions encoded in this SRS may be raised automatically; unsupported semantic/legal interpretation must return REVIEW_REQUIRED_UNSUPPORTED_SEMANTIC.
+Do not scrape marketplaces or add Amazon/Flipkart/e-commerce integrations for the Core prototype. W-GOV-08 accepts deliberate officer uploads and optional supplied text only.
+Do not let a listing screenshot or other partial online image satisfy coverage-before-absence. Missing-from-view means evidence gap / physical verification required, not POTENTIALLY_ABSENT.
+19.2 Recommended implementation handoff order
+Why this section exists: Provides the dependency order in which the detailed contracts should be consumed during coding.
+[TABLE]
+Step | Team handoff | Completion check
+1 | Seed the 3 validated package profiles, D01-D06 groups and LMPC-R01..R14 rule records | A fixture can produce an evidence plan without UI-specific fields being invented
+2 | Create PostgreSQL migrations + Pydantic models from Section 16 | All core states and relationships exist; no duplicate enum vocabulary
+3 | Implement REST contracts and generate/maintain OpenAPI from FastAPI | Mobile/web can mock against the same request/response shapes
+4 | Implement M-INS field vertical slice first | Assignment -> offline capture -> sync -> analysis -> map -> verify -> report passes
+5 | Implement W-GOV verified pattern/action vertical slice | Verified finding changes explained candidate -> officer approval -> parent case/follow-up
+6 | Add grounded Copilot and bounded uploaded package/listing-image + product-text review | Sources/status labels always visible; evidence-gap response works; unseen-side absence is blocked
+7 | Reuse capture/extraction components for citizen path | Structured lead enters government intake without authoritative verdict
+8 | Run T1-T17 and traceability matrix before final UI polish | Every capability has visible behaviour + backend guard + persisted proof + negative test
+[/TABLE]
+[TABLE]
+Build-ready completion definitionThe prototype is specification-ready when the implementation team can take any capability ID (C1-C2, I1-I6, G1-G4) and identify its rule/behaviour, database objects, API contract, screen/component states and acceptance proof without inventing a competing design. Build-ready does not mean that every internal coding choice or empirical threshold is permanently fixed: intentionally tunable values and local implementation technique remain adjustable only under Section 20. A coder must not invent new legal, product, workflow, state, API, data, security or visual semantics.
+[/TABLE]
+19.3 Legal-source baseline for the seeded rule records
+Why this section exists: Identifies the legal-source baseline that must be frozen for the seeded prototype rules before final demonstration.
+The selected implementation references are based on the Legal Metrology (Packaged Commodities) Rules, 2011 as amended, with Rule 6 covering package declarations, Rule 10 supporting manufacturer/packer/importer address detail, and Rule 9 covering manner/legibility. Before the final SIH demonstration, the team should freeze the exact consolidated rule version used by the seeded fixtures and store that version/reference in the rules table. This supplement deliberately avoids claiming coverage beyond the selected fixture checks.
+Department of Consumer Affairs, Government of India - "Book on Legal Metrology (Packaged Commodities) Rules, 2011 with all amendments" / consolidated rules resource.
+Rule 6(2) baseline: consumer-care name/address/telephone/e-mail contact details.
+Rule 9 baseline: required declarations are legible and prominent; MRP/net-quantity numerals use conspicuous contrast, subject to the rule text/exceptions.
+19.4 SIH Problem-Statement Requirement Closure
+Why this section exists: Confirms that the exact functional requirements called out in the SIH statement are represented by explicit prototype behaviour rather than being assumed from the architecture.
+[TABLE]
+SIH requirement | Implementation surface | Bounded prototype interpretation
+Check placement of declarations | PRES-01 + M-INS-07/W-GOV-03 evidence detail + ANA-03 | Bounded to selected versioned rule/fixture and usable geometry; otherwise insufficient evidence.
+Font size requirements | PRES-02 + calibrated Inspector evidence + rule_results | Physical size only when calibration exists; legal threshold is versioned rule data; uncalibrated image abstains.
+Readability requirements | PRES-03 + existing blur/glare quality gate | Separates bad photograph from actual label-readability concern.
+Repository of scanned products | Section 16.5 + W-GOV-07 + GOV-04 | Read view over case-level product snapshots/history; no separate product master.
+Compliance / inspection history retrieval | W-GOV-07 -> case/evidence/verification history | Prior scans remain source-linked and auditable.
+Search/retrieval of previous products and reports | GOV-04/05 + RPT-02 | Indexed PostgreSQL filters + authorised report retrieval; no Elasticsearch/vector search.
+Missing, misleading or non-standard declarations | Existing coverage-before-absence + LMPC-R05/R09 + FMT-01 + conflict retention + T16 | Missing uses the evidence-completeness gate; non-standard/inconsistency checks are bounded and source-linked; unsupported semantic “misleading” claims are escalated to officer review rather than autonomously classified.
+Product listings / product information input | W-GOV-08 + COP-02 + G2 case review + T17 | Officer deliberately uploads package/listing images and optional product/listing text. No scraping/API integration is required; unseen sides remain an evidence gap and trigger physical verification.
+[/TABLE]
+20. Final Build-Ready SRS Handoff Contract
+Why this section exists: Explains how a teammate or AI coding model must interpret this single document and what it may or may not decide during implementation.
+This section defines how a teammate or AI coding model must interpret this single document during implementation. The goal is to eliminate invention of product, legal, workflow, architecture, data, API, security and visual decisions while still allowing normal software engineering judgement where the prototype must be calibrated or where an internal code choice has no effect on the external contract.
+Build-ready does not mean “zero implementation decisions whatsoever.” No useful software specification should freeze every helper function, threshold or library call. It means that every decision capable of changing what the prototype means, stores, exposes, permits or shows is either locked in this SRS or explicitly identified below as a tunable parameter. Anything else is ordinary implementation discretion inside the approved architecture.
+20.1 Decision Ownership: Locked, Tunable and Implementation-Discretion
+Why this section exists: Separates product/system decisions that are fixed from empirical values that require tuning and harmless local coding choices.
+UI interpretation rule: SCREEN SCOPE / CONTENT / ACTIONS / STATE MEANING are locked contracts. The wireframe artwork itself is not locked pixel geometry. Visual craftsmanship is implementation discretion only inside the approved departmental design system; it may make the interface cleaner and more polished, but it may not invent a new workflow, hide required evidence, change a role permission or alter semantic status meaning.
+[TABLE]
+Decision class | Coder / AI behaviour | Examples in this SRS
+LOCKED CONTRACT | Implement exactly as specified. A change requires updating this SRS before changing code. Do not silently “improve” or reinterpret it. | 12 capability scope; role separation; state names/transitions; evidence-before-rule and coverage-before-absence; officer verification; verified-only patterns; ERD relationships/enums; API paths/roles/guards; screen IDs, required screen content/navigation and wireframe information hierarchy; semantic visual meanings; offline boundary; T1-T17 and VUI-01..VUI-08 checks.; calibrated-only physical font-size rule; presentation abstention states; PostgreSQL-only repository/search contract.; FMT-01 bounded non-standard/inconsistency semantics; listing-review evidence-gap/no-unseen-absence guard; deliberate-upload-only e-commerce scope.
+TUNABLE / EMPIRICAL | Keep the value in configuration, not as an unexplained magic constant. Choose an initial value only by running the representative fixtures/device flow, observe behaviour, and adjust until the defined acceptance behaviour is stable. Tuning may change without rewriting the SRS only when no locked semantic/invariant changes. | Blur/glare quality thresholds; OCR confidence bands; cross-view fusion similarity/tolerance; device-specific image limits; analysis timeout/retry timing; token lifetime; other runtime calibration values explicitly listed in 20.2.
+IMPLEMENTATION DISCRETION | The coder may choose the local technique inside the approved stack when it cannot change the external contract. Prefer the simplest maintainable implementation; do not add infrastructure to solve a local code problem. | Private helper names; internal function decomposition; SQLAlchemy query form; small React component decomposition; unit-test file organisation; exact OpenCV implementation used to calculate a configured quality metric; pixel-level visual refinement within Sections 18.3/18.8 (spacing/alignment/responsive composition/icon treatment) so long as low-fidelity wireframes are not treated as final styling.
+SPECIFICATION GAP | If a missing choice would alter user-visible behaviour, legal interpretation, a state transition, stored data, API semantics, permissions, system boundary or visual meaning, do not guess. Flag it as SPEC_DECISION_REQUIRED and resolve/update the SRS first. | A new status, new endpoint/payload field, new legal rule, new automatic government action, new persistent entity, different role permission, or a new visual meaning for green.
+[/TABLE]
+Specification precedence: the prototype framing boundaries and system invariants in Sections 2-4 and 10 remain authoritative. Sections 15-20 make those decisions implementation-ready and may clarify earlier high-level wording, but must not weaken human control, evidence provenance, uncertainty preservation, verified-only pattern logic or the bounded SIH scope. When two statements appear inconsistent, the coder must choose neither interpretation silently; surface the conflict as SPEC_DECISION_REQUIRED.
+20.2 Tunable Prototype Configuration Registry
+Why this section exists: Lists runtime thresholds intentionally left empirical so they can be calibrated on fixtures rather than guessed or hard-coded.
+The values below are intentionally not treated as statutory or product truths. They are empirical prototype settings. A teammate or AI coder may calibrate them, but must externalise them in configuration and preserve the behaviour in the “Must preserve” column. The final demo configuration should be frozen once the fixture set and target devices are stable.
+[TABLE]
+Configuration key / family | How to choose or calibrate | Must preserve
+capture.blur_threshold | Run the clean, difficult and deliberately blurred fixture images on the target mobile device/OpenCV pipeline. Pick the smallest threshold that reliably separates the deliberate blur case without rejecting normal usable evidence. | Poor blur must produce a specific re-capture instruction; it must never become a legal finding.
+capture.glare_threshold | Calibrate on the selected reflective/glare fixtures and real package captures under demo lighting. | Glare may warn/re-capture or reduce evidence usability; it must not fabricate absence or a final finding.
+capture.coverage_thresholds.<profile> | Calibrate per RIGID_CUBOID, CURVED_RIGID and FLEXIBLE profile using the seeded evidence-plan fixtures. OTHER_PACKAGE remains manual-confirmation only. | coverage_state and absence_eligible must still obey Section 15.1; POTENTIALLY_ABSENT cannot be reached before the gate passes.
+ocr.accept_confidence / ocr.review_confidence | Measure PaddleOCR output on the seeded clean/difficult package images. Set bands so reliable candidates are usable and weak candidates are retained for re-capture/manual review. | Low confidence becomes UNRESOLVED/needs evidence; it is never silently accepted or discarded.
+fusion.string_similarity / fusion.numeric_tolerance | Use deliberately repeated and conflicting views from the fixture set. Tune normalization/tolerance only to consolidate equivalent readings. | Two credible materially different readings outside the calibrated tolerance remain CONFLICTING with both source references.
+upload.max_image_bytes / image target dimensions | Choose for target phone memory, network and S3/demo environment after testing the largest representative capture. Client and server limits must agree. | Original evidence remains traceable; resizing/compression must not destroy the registered evidence workflow or hide a hash mismatch.
+analysis.poll_interval_ms | Use the existing contract of approximately 2-3 seconds while the analysis screen is active; minor adjustment for responsiveness/load is allowed. | No WebSocket/Redis layer is introduced; polling stops on SUCCEEDED/FAILED or when the screen leaves context.
+analysis.timeout_seconds / max_retries | Choose from measured demo hardware/model latency. A timeout must be long enough for representative difficult fixtures but finite enough to recover in the demo. | Timeout/failure produces an explicit retryable state; the system never fabricates a completed analysis.
+auth.jwt_ttl_minutes | Set per demo environment/security practicality and keep in environment configuration. | Expired/revoked credentials must not retain access; server-side RBAC remains authoritative.
+priority.severity_rank.<rule_id> | Seed explicitly for the demo fixture set by the team/product owner. Do not infer a legal severity from model confidence or have the coder invent one in code. | Priority remains explainable and non-statutory; officer override with reason remains available.
+presentation.measurement_tolerance_mm | Calibrate on seeded reference-marker/known-scale fixtures and target camera. It compensates measurement noise only; it must not replace or relax the legal minimum stored in the versioned rule record. | Physical font-size PASS/POTENTIAL concern is allowed only with valid calibration; legal threshold remains locked rule data.
+presentation.readability_contrast_threshold / ocr_stability | Calibrate on quality-passing readable vs deliberately low-legibility fixture regions after blur/glare gating. | Poor capture still routes to re-capture; readability concern is raised only on otherwise usable source evidence.
+presentation.placement_tolerance | Calibrate geometric tolerance on the selected seeded package/view fixtures to absorb normal capture variance around the configured placement zone. | Configured rule/zone meaning is not changed; if geometry is insufficient the result is INSUFFICIENT_PRESENTATION_EVIDENCE.
+[/TABLE]
+Locked prototype configuration is not part of this tuning permission. In particular, the pattern candidate trigger in Section 15.2 (minimum verified recurrence and retailer spread), the 3 validated package families + Other Package mode, D01-D06 declaration groups, LMPC-R01..R14 seeded checks, verified-only counting rule, one downloaded offline assignment boundary, and all human-approval gates remain locked unless this SRS is revised.
+20.3 Configuration and “No Magic Constants” Rule
+Why this section exists: Defines where tunable values live and how to change them without scattering unexplained literals through the codebase.
+Empirical thresholds and operational timing values must live in a single prototype configuration source for the backend/demo environment. Do not scatter duplicated literals through routes, services and UI components.
+Package-profile capture configuration and any on-device quality values needed offline are downloaded/cached with the assignment configuration so the Inspector app uses the same versioned profile rather than inventing its own values.
+Versioned legal rules and package/evidence-plan fixture data belong in seed/config records that the backend can inspect and persist; do not encode legal text as unexplained conditionals inside UI code.
+Mobile and Government web share semantic visual token names from Section 18.3/18.8. Platform-specific token files may differ technically, but the meaning and colours must not drift.
+Secrets, credentials and deployment-specific keys live in environment variables or secret storage. They are never committed as prototype constants or embedded in this SRS.
+When a tunable is changed during calibration, record the final demo value in the project configuration/seed file. The SRS needs revision only if the change alters a locked behaviour or interpretation.
+20.4 Coding and Module Conventions
+Why this section exists: Keeps generated and teammate-written code aligned with the approved architecture, state vocabulary and simplicity boundary.
+[TABLE]
+Area | Required convention
+Backend modules | Keep the existing FastAPI modular-monolith boundaries: identity/roles; cases/assignments; capture/evidence; compliance; verification/reports; patterns/workflow; grounded Copilot. A module may have internal files/services, but do not split it into deployable microservices for the Core SIH prototype.
+Data contracts | Pydantic/API schemas and PostgreSQL enums use the names defined in Sections 16-17. Frontends consume typed contracts; do not maintain competing status vocabularies.
+Identifiers/time | Use UUIDs as contracted; offline evidence gets its stable UUID before upload. Server timestamps are ISO-8601 UTC while device capture time is also preserved.
+State changes | State transitions occur through backend service/domain logic, not by arbitrary database updates from route handlers or frontend assumptions. Required audit events are written with the transition.
+Frontend structure | Screens use stable IDs/routes from Section 18. Shared components implement the component specifications. Screen code uses the typed API client and explicit async/offline states rather than constructing ad-hoc URLs or response shapes.
+Offline implementation | Use expo-sqlite + SQLCipher/app-private file storage only for the bounded assignment/evidence/sync subset. Full OCR/rule/pattern processing remains server-side after synchronisation.
+Tests/fixtures | Use deterministic representative fixtures. Name/organise tests so T1-T17, role-negative checks and VUI-01..VUI-08 can be traced to code. A successful happy path alone is not Definition of Done.
+Simplicity rule | When two implementations satisfy the same locked contract, choose the simpler one with fewer moving parts. Do not add Redis, WebSockets, event buses, vector stores, product-master services or extra infrastructure merely because a coding model suggests them.
+[/TABLE]
+20.5 AI-Assisted Coding Execution Protocol
+Why this section exists: Defines the step-by-step behaviour expected when an AI coding model encounters locked contracts, tunables, discretion or a genuine specification gap.
+When this document is provided to an AI coding model, the following execution protocol is part of the prompt/contract. It exists to prevent the model from filling a genuine specification gap with a plausible but competing design.
+Start from the capability ID being implemented and read its row in Section 19 traceability before generating code.
+Read the referenced rule/evidence behaviour, ERD/schema, API contract, screen/component specification and acceptance test. Implement those names and states; do not rename them for preference.
+If an unknown value is listed in Section 20.2 as TUNABLE, create/use the configuration key, run the relevant fixtures or measured flow, and calibrate the value. Do not convert it into a hidden magic constant.
+If the missing choice is not explicitly tunable and would change user-visible behaviour, legal meaning, workflow, data, API, permissions, system boundary or visual semantics, stop and report SPEC_DECISION_REQUIRED instead of guessing.
+If the choice is purely internal and falls under IMPLEMENTATION DISCRETION, choose the simplest option inside the approved stack and continue without expanding scope.
+For frontend work, treat the Section 18.2 wireframes as structure references, not a pixel-perfect target. Preserve the required screen content, actions, hierarchy and states, then implement a polished restrained departmental UI using the visual rules and tokens in Sections 18.3 and 18.8. Do not “beautify” by adding new workflows, decorative dashboards or semantic colour meanings.
+Generate or update tests alongside the capability, tied to its T/VUI/role-negative acceptance IDs. Do not declare completion from a rendered screen alone.
+Before finishing a capability, verify that backend guard + persisted artifact + visible UI behaviour + acceptance proof all exist, matching the build rule in Section 1.
+20.6 Final Handoff Gate
+Why this section exists: Provides the final checklist that must pass before the document can be treated as the authoritative implementation source for the demo build.
+[TABLE]
+Gate | Pass condition
+Single source of truth | This Final Build-Ready SRS is the authoritative prototype specification. Separate notes/mockups may assist implementation but cannot silently override it.
+No competing business design | No new capability, legal interpretation, state, workflow, data entity, endpoint, role permission, approval path or visual status meaning has been invented in code.
+Tunables externalised | Every empirical/runtime threshold that affects prototype behaviour is visible in configuration and was calibrated against representative fixtures/device behaviour; no unexplained magic value controls a legal/evidence decision.
+Traceability complete | Each C1-C2, I1-I6 and G1-G4 capability resolves to rule/behaviour + persisted data + API + screen/component state + acceptance proof. G2 additionally resolves listing/image review to COP-02/W-GOV-08/T17; bounded non-standard/inconsistency review resolves through FMT-01/T16.
+Human-control invariants | AI output remains candidate/potential; officer verification and government approval boundaries are preserved; citizen/AI-only leads never inflate verified pattern counts.
+Prototype boundary preserved | No microservice split, vector database, autonomous judiciary/legal action, full offline AI, central product master or unrelated enterprise infrastructure has been introduced.
+Test proof | T1-T17, role-negative tests and VUI-01..VUI-08 pass on the deployable prototype with the frozen demo fixtures/configuration.
+Visual implementation fidelity | The final UI is polished and coherent within Sections 18.3/18.8; low-fidelity wireframes are used as structural references rather than copied literally. Required screen content, actions, role boundaries, evidence/verification semantics and departmental restraint remain unchanged.
+Demo freeze | Before the final SIH demonstration, freeze and record the consolidated Legal Metrology rule/version references, fixture dataset and final calibrated prototype configuration used by the build.
+[/TABLE]

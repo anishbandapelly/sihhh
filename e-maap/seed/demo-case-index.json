@@ -1,0 +1,82 @@
+[
+  {
+    "case_id": "324b1735-3c08-50c9-bdb2-b6e8a2dd456c",
+    "scenario": "Assigned field inspection",
+    "fixture": "clean"
+  },
+  {
+    "case_id": "40b7c59e-3a7b-5df1-868e-59d2935fbfc4",
+    "scenario": "Verified recurrence \u00b7 Jayanagar",
+    "fixture": "missing-care-phone"
+  },
+  {
+    "case_id": "c3742d6b-d3ff-5e21-9809-b66939ac755e",
+    "scenario": "Verified recurrence \u00b7 Basavanagudi",
+    "fixture": "missing-care-phone"
+  },
+  {
+    "case_id": "d857b192-471e-5603-984b-f061597a69b8",
+    "scenario": "Historical report \u00b7 Malleshwaram",
+    "fixture": "missing-care-phone"
+  },
+  {
+    "case_id": "4ae37282-9e73-5fba-835d-a6df560d4a55",
+    "scenario": "Incomplete package coverage",
+    "fixture": "incomplete"
+  },
+  {
+    "case_id": "222466ab-a067-5653-b433-97e2ef5c2ea1",
+    "scenario": "Conflicting quantity readings",
+    "fixture": "conflict-600g"
+  },
+  {
+    "case_id": "f5cef29d-8d67-5ce4-8611-8976eeb0cb6c",
+    "scenario": "Blurred capture",
+    "fixture": "blurred"
+  },
+  {
+    "case_id": "91e794cd-fba4-5360-bfdf-1d5e8e2077bf",
+    "scenario": "Glare-heavy capture",
+    "fixture": "glare"
+  },
+  {
+    "case_id": "b2d15a38-23da-5771-9313-3d2774d566e4",
+    "scenario": "Font size unmeasurable",
+    "fixture": "font-unmeasurable"
+  },
+  {
+    "case_id": "9892dc8a-efb8-58b5-ae5c-d830de190e40",
+    "scenario": "Calibrated small text",
+    "fixture": "font-small-calibrated"
+  },
+  {
+    "case_id": "34d01d59-3400-5c37-959c-f5c548efd353",
+    "scenario": "Placement concern fixture",
+    "fixture": "placement"
+  },
+  {
+    "case_id": "703247a3-a170-5d8a-869a-99c37972586c",
+    "scenario": "Readability concern fixture",
+    "fixture": "readability"
+  },
+  {
+    "case_id": "13922278-4d1d-5551-b127-b5bc8976a979",
+    "scenario": "Non-standard quantity and MRP",
+    "fixture": "nonstandard"
+  },
+  {
+    "case_id": "a50466d1-8efc-5ed4-baa6-5f8832a0a427",
+    "scenario": "Obscured care region",
+    "fixture": "obscured"
+  },
+  {
+    "case_id": "ebcb3689-7c37-549e-a58d-cbb63c46d3a2",
+    "scenario": "Compliant package fixture",
+    "fixture": "clean"
+  },
+  {
+    "case_id": "1e2c8c78-7fb9-5438-83d5-355477e394ca",
+    "scenario": "Potentially absent care declaration",
+    "fixture": "absent-care"
+  }
+]

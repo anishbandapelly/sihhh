@@ -1,0 +1,19 @@
+{
+  "version": "sih-demo-1",
+  "capture": {"blur_threshold": 65.0, "glare_threshold": 0.24, "sample_width": 512, "glare_luminance": 250, "glare_local_contrast": 4.0},
+  "ocr": {"accept_confidence": 0.85, "review_confidence": 0.50},
+  "fusion": {"string_similarity": 0.96, "numeric_tolerance": 0.005},
+  "upload": {"max_image_bytes": 12582912, "max_image_pixels": 24000000},
+  "analysis": {"poll_interval_ms": 2500, "timeout_seconds": 180, "max_retries": 3},
+  "auth": {"citizen_session_minutes": 120, "rate_limit_per_minute": 30},
+  "presentation": {"measurement_tolerance_mm": 0.1, "readability_contrast_threshold": 22.0, "ocr_stability": 0.8, "placement_tolerance": 0.02},
+  "priority": {"bands": ["HIGH", "NORMAL", "LOW"], "default_band": "NORMAL", "severity_rank": {"LMPC-R01": 1, "LMPC-R02": 1, "LMPC-R03": 1, "LMPC-R04": 1, "LMPC-R05": 1, "LMPC-R06": 1, "LMPC-R07": 1, "LMPC-R08": 1, "LMPC-R09": 1, "LMPC-R10": 1, "LMPC-R11": 1, "LMPC-R12": 1, "LMPC-R13": 1, "LMPC-R14": 1}},
+  "patterns": {"minimum_verified": 3, "minimum_retailers": 2, "locked": true},
+  "profiles": {
+    "RIGID_CUBOID": {"title": "Carton or box", "roles": ["CORNER_A", "CORNER_B", "TOP_BASE"], "prompts": ["Angle the carton to show the front and adjoining face.", "Turn the pack to show the complementary faces.", "Show the top and base, including label continuations."], "manual": false},
+    "CURVED_RIGID": {"title": "Bottle, can or jar", "roles": ["ROTATION_A", "ROTATION_B", "ROTATION_C", "TOP_BASE"], "prompts": ["Centre the label on the curved surface.", "Rotate the container with overlap from the first view.", "Continue rotation to reveal the remaining label.", "Show the cap and base where declarations may continue."], "manual": false},
+    "FLEXIBLE": {"title": "Pouch or packet", "roles": ["BROAD_A", "BROAD_B", "SEAM_EDGE"], "prompts": ["Flatten the front without concealing damage.", "Turn and flatten the back; tilt to reduce reflections.", "Show seams, folds and edges where labels continue."], "manual": false},
+    "OTHER_PACKAGE": {"title": "Other package · manual coverage", "roles": ["OVERVIEW_A", "OVERVIEW_B"], "prompts": ["Show an overview and identify the inspected area.", "Show another overview of the remaining inspected area."], "manual": true}
+  }
+}
+
